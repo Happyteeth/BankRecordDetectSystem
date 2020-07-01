@@ -1,0 +1,155 @@
+.layui-table-view{
+    border:0!important;
+}
+.addBtn{
+    cursor: pointer;
+    color:#0C79FD;
+}
+.add-icon:hover,.node_name:hover{
+ color:#316AC5;
+}
+.model-box{
+    height: 98vh;
+}
+.model-box-home{
+    height: 91vh;
+}
+.tab-header{
+    margin: 0 15px;
+}
+#runTab{
+    display: none;
+}
+.exportTableBox > .layui-border-box>.layui-table-box>.layui-table-header>.layui-table,
+.exportTableBox > .layui-border-box>.layui-table-box>.layui-table-body>.layui-table{
+    width: 100%;
+}
+.layui-table-view .layui-table td, .layui-table-view .layui-table th{
+    padding:2px 0;
+    border-width:1px;
+}
+.nothing-chart,.nothing-tab{
+    text-align: center;
+    color: #d4d4d4;
+    line-height: 100px;
+    position: relative;
+    top:50%;
+    display: none;
+}
+.layui-box{
+    margin: 0;
+}
+.layui-box-con{
+    padding: 0;
+}
+.layui-chart-card{
+    min-height: 87vh;
+}
+.add:after{
+    transform: rotate(90deg);
+}
+.layui-tree-iconArrow:after{
+    transition: .3s;
+}
+.layui-textarea{
+    min-height: 20px;
+}
+.model-first{
+    min-height: 96vh;
+}
+.model-first-home{
+    min-height: 91vh;
+}
+.layui-form-label{
+    position: relative;
+}
+.edit-icon{
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    position: absolute;
+    right: 10px;
+    color:red;
+}
+#key{
+    /*padding-left: 27px;*/
+}
+.sIcon{
+    color: #a9a9a9;
+}
+.sIcon:hover{
+    color: #565656;
+}
+.layui-form-label{
+    width: 84px;
+}
+.layui-input-block{
+    margin-left: 114px;
+}
+.add-icon{
+    display: none;
+}
+.layui-tree-entry:hover .add-icon{
+    display: inline-block;
+}
+.searchBtn{
+    padding: 0 18px;
+    border-radius: 0 5px 5px 0;
+}
+.sIcon,.sIcon:hover{
+    color: #FFF;
+}
+.model-btns{
+    width: 74px;
+    line-height: 32px;
+    height: 32px;
+}
+.model-btns:nth-child(1){
+    width: 88px;
+}
+.layui-btn + .layui-btn{
+    margin-left: 24px;
+}
+.export-num{
+    color:#F1440E;
+    font-weight: normal;
+}
+
+
+
+@media screen and (min-width: 1201px){
+    .layui-col-md4 {
+        width: 28%;
+    }
+    .layui-col-md8 {
+        width: 72%;
+    }
+}
+/*#modeTree .layui-tree .layui-tree-entry .layui-tree-main{*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    width: 94%;*/
+/*}*/
+/*#modeTree .layui-tree .layui-tree-pack .layui-tree-lineExtend .layui-tree-main{*/
+/*    white-space: nowrap;*/
+/*    overflow: hidden;*/
+/*    text-overflow: ellipsis;*/
+/*    width: 95%;*/
+/*}*/
+
+/*滚动条样式*/
+#modeTable::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 4px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 4px;
+}
+#modeTable::-webkit-scrollbar-thumb {/*滚动条里面小方块*/
+    border-radius: 5px;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    background: rgba(0,0,0,0.2);
+}
+#modeTable::-webkit-scrollbar-track {/*滚动条里面轨道*/
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+    border-radius: 0;
+    background: rgba(0,0,0,0.1);
+}

@@ -1,0 +1,158 @@
+@layout("/common/_container.html",{css:["/assets/modular/executeManage/executeManage.css"],js:["/assets/modular/executeManage/executeManage.js"]}){
+<div class="layui-tab layui-tab-brief layui-box model-box" lay-filter="modelBox">
+    <ul class="layui-tab-title tab-header">
+        <li lay-id="1" class="layui-this">执行结果</li>
+        <li lay-id="2" id="rTab">结果图表</li>
+    </ul>
+    <div class="layui-tab-content tab-content layui-box-con">
+        <div class="layui-tab-item layui-show">
+            <div class="layui-fluid" style="padding: 0 15px">
+                <div class="layui-card layui-chart-card">
+                    <div class="layui-card-body executeBody">
+                        <div class="layui-row">
+                            <div class="layui-col-md4">
+                                <div class="layui-btn-group btnGroup">
+                                </div>
+                            </div>
+                            <div class="layui-col-md4" style="display: flex">
+                                <div style="flex-grow: 1;position: relative;display: flex">
+                                    <input id="searchInput" type="text" placeholder="搜索页面所有内容" autocomplete="off" class="layui-input">
+                                    <div class="layui-inline">
+                                        <div class="layui-input-inline">
+                                            <i id="test28" class="layui-icon layui-icon-date" title="时间选择"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button class="layui-btn searchBtn" id="search">
+                                    <i class="layui-icon layui-icon-search sIcon"></i>
+                                </button>
+                            </div>
+                            <div class="layui-col-md2" style="margin-left: 10px">
+                                <button  type="button" class="layui-btn" id="refresh">刷新</button>
+                            </div>
+                        </div>
+<!--                        <div class="layui-row">-->
+<!--                            <div class="layui-col-md6">-->
+<!--                                <div class="layui-form">-->
+<!--                                    <div class="layui-form-item">-->
+<!--                                        <div class="layui-inline" style="display: flex">-->
+<!--                                            <label class="layui-form-label">提交时间</label>-->
+<!--                                            <div class="layui-input-inline" style="flex-grow:1;display: flex">-->
+<!--                                                <input type="text" class="layui-input" id="test19" placeholder="开始时间" autocomplete="off" readonly="readonly">-->
+<!--                                                <span style="margin: 0 5px;line-height: 38px">至</span>-->
+<!--                                                <input type="text" class="layui-input" id="test20" placeholder="结束时间" autocomplete="off" readonly="readonly">-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="resultTableBox">
+                            <table class="layui-table" id="resultTable" lay-filter="resultTable"></table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-tab-item">
+            <div class="layui-fluid">
+                <div class="layui-card layui-chart-card">
+                    <div class="layui-row">
+                        <div class="layui-col-md12">
+                            <div class="layui-card-header text-right">
+                                <button type="button" id="uploadResult" class="layui-btn layui-btn-sm "
+                                        lay-filter="click">
+                                    <i class="layui-icon"></i>导出列表数据
+                                </button>
+                            </div>
+                            <div class="layui-card-body exportTableBox">
+                                <h2 class="nothing-tab">暂无列表数据</h2>
+                                <table class="layui-table" id="exportTable" lay-filter="exportTable">
+                                    <!--<thead class="exportHeader">-->
+                                    <!--<tr class="exportTableHeader"></tr>-->
+                                    <!--</thead>-->
+                                    <!--<tbody class="exportTableList"></tbody>-->
+                                </table>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card-header text-right">
+                                <button type="button" id="uploadChart" class="layui-btn layui-btn-sm ">
+                                    <i class="layui-icon"></i>导出图表数据
+                                </button>
+                            </div>
+                            <div id="dataReport" class="layui-card-body"
+                                 style="width: 400px;height:400px;margin: auto">
+                                <h2 class="nothing-chart">暂无图表数据</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<script type="text/html" id="barStatus">-->
+<!--    {{#  if(d.status == '初始提交'){ }}-->
+<!--    <span class="layui-badge-dot layui-bg-gray"></span>初始提交-->
+<!--    {{#  } else if(d.status == '已取消'){ }}-->
+<!--    <span class="layui-badge-dot"></span>已取消-->
+<!--    {{#  } else if(d.status == '运行中'){ }}-->
+<!--    <span class="layui-badge-dot layui-bg-blue"></span>运行中-->
+<!--    {{#  } else if(d.status == '执行异常'){ }}-->
+<!--    <span class="layui-badge-dot layui-bg-gray"></span>执行异常-->
+<!--    {{#  } else if(d.status == '执行完成'){ }}-->
+<!--    <span class="layui-badge-dot layui-bg-green"></span>执行完成-->
+<!--    {{#  } }}-->
+<!--</script>-->
+<div id="addCon" style="display: none;padding:10px 40px 10px 0;">
+    <form class="layui-form"  id="mSave">
+        <div class="layui-form-item">
+            <label class="layui-form-label">模型名称</label>
+            <div class="layui-input-block">
+                <input id="mName" type="text" name="ruleName" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">模型描述</label>
+            <div class="layui-input-block">
+                <textarea id="mDes" type="text" name="modelDesc" placeholder="请输入内容" class="layui-textarea" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">检查类别</label>
+            <div class="layui-input-block">
+                <select id="mFirst" name="modelType1ItemId" required  lay-verify="required" lay-filter="mFirst" class="layui-select">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">检查项</label>
+            <div class="layui-input-block">
+                <select id="mSecond" name="modelType2ItemId" required  lay-verify="required" lay-filter="mSecond">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/html" id="barDemo">
+    {{#  if(d.status == '执行完成' && d.ruleType == '模型'){ }}
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看结果</a>
+    {{#  } else if(d.vInsertUser == d.account && d.status == '执行完成' && d.ruleType !== '模型'){ }}
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看结果</a>
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="saveModel">存为模型</a>
+    {{#  } else if(d.vInsertUser == d.account && (d.status == '等待执行')){ }}
+    <a class="layui-btn layui-btn-xs s{{ d.LAY_INDEX }}" lay-event="stop">暂停</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs c{{ d.LAY_INDEX }}" lay-event="calc">取消</a>
+    {{#  } else if(d.vInsertUser == d.account && (d.status == '已暂停')){ }}
+    <a class="layui-btn layui-btn-xs r{{ d.LAY_INDEX }}" lay-event="run">恢复</a>
+    {{#  } else if(d.vInsertUser == d.account && (d.status == '已取消')){ }}
+    <a style="color: #666">——</a>
+    {{#  } else if(d.status == '运行中' || d.status == '执行异常'){ }}
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="noDetail"><i class="layui-icon layui-icon-about"></i>查看结果</a>
+    {{#  } }}
+
+</script>
+@}

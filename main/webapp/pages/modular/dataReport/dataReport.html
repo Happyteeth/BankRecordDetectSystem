@@ -1,0 +1,47 @@
+@layout("/common/_container.html",{css:["/assets/modular/dataReport/dataReport.css"],js:["/assets/modular/dataReport/dataReport.js"]}){
+<div class="layui-fluid">
+    <div class="dataReport-box">
+        <div class="layui-card">
+            <div class="layui-card-header rHeader">
+                <div class="layui-row">
+                    <div class="layui-col-md5">
+                        <form id="analysisForm" class="layui-form">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">请选择:</label>
+                                <div class="layui-input-block">
+                                    <select id="tableList" lay-filter="createReport" class="layui-input">
+                                    </select>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="layui-col-md7 text-right" style="height: 62px;line-height: 62px;">
+                        <!--                        <button class="layui-btn layui-btn-sm" lay-filter="btnSubmit" lay-submit id="createReport">生成数据报表</button>-->
+                        <button class="layui-btn layui-btn-sm" lay-filter="btnSubmit" lay-submit id="exportReport"
+                                style="float: left; margin-top: 15px;margin-left: 38px;"
+                        >导出报表
+                        </button>
+                        <label id="report_time"></label>
+                    </div>
+                </div>
+            </div>
+            <div id="data_report" class="layui-card-body" style="background: rgba(241,242,249,1);margin: 0px auto;">
+                <p class="nothing">暂无数据</p>
+            </div>
+        </div>
+    </div>
+</div>
+@}
+
+
+
+
+
+
+
+
+
+
+
+
+

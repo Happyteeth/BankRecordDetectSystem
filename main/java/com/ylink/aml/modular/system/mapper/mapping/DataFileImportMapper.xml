@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ylink.aml.modular.system.mapper.DataFileImportMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ylink.aml.modular.system.entity.DataFileImport">
+        <id column="FILE_ID" property="fileId" />
+        <result column="TABLE_NAME" property="tableName" />
+        <result column="ORI_PATH" property="oriPath" />
+        <result column="ORI_SIZE" property="oriSize" />
+        <result column="HDFS_PATH" property="hdfsPath" />
+        <result column="IF_TITLE" property="ifTitle" />
+        <result column="FILE_FORMAT" property="fileFormat" />
+        <result column="DELIMIT_FIELD" property="delimitField" />
+        <result column="DELIMIT_LINE" property="delimitLine" />
+        <result column="LINE_TITLE" property="lineTitle" />
+        <result column="LINE_N" property="lineN" />
+        <result column="STATUS" property="status" />
+        <result column="LINE_TOTAL" property="lineTotal" />
+        <result column="LINE_ERROR" property="lineError" />
+        <result column="LINE_N_ERROR" property="lineNError" />
+        <result column="ERROR_PATH" property="errorPath" />
+        <result column="LINE_SUCC" property="lineSucc" />
+        <result column="C_DEL_FLAG" property="cDelFlag" />
+        <result column="D_INSERT" property="dInsert" />
+        <result column="D_UPDATE" property="dUpdate" />
+        <result column="V_INSERT_USER" property="vInsertUser" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        FILE_ID AS fileId, TABLE_NAME AS tableName, ORI_PATH AS oriPath, ORI_SIZE AS oriSize, HDFS_PATH AS hdfsPath, IF_TITLE AS ifTitle, FILE_FORMAT AS fileFormat, DELIMIT_FIELD AS delimitField, DELIMIT_LINE AS delimitLine, LINE_TITLE AS lineTitle, LINE_N AS lineN, STATUS AS status, LINE_TOTAL AS lineTotal, LINE_ERROR AS lineError, LINE_N_ERROR AS lineNError, ERROR_PATH AS errorPath, LINE_SUCC AS lineSucc, C_DEL_FLAG AS cDelFlag,D_INSERT AS dInsert, D_UPDATE AS dUpdate, V_INSERT_USER AS vInsertUser
+    </sql>
+
+    <select id="selectFileInfo" resultType="map"   >
+        select
+        <include refid="Base_Column_List"/>
+        from DATA_FILE_IMPORT
+        where 1=1
+        <if test="tableName != null and tableName != ''">
+            and  TABLE_NAME=#{tableName}
+        </if>
+
+        and  C_DEL_FLAG= '0'
+
+        order by D_INSERT DESC
+    </select>
+</mapper>

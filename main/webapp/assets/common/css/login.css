@@ -1,0 +1,118 @@
+/** 登录页面样式 */
+
+body {
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-size: 100% 100%;
+    background-color: rgba(245,245,250,1);
+    display: flex;
+}
+.content{
+    margin: auto;
+}
+.login-box{
+    background: #fff;
+}
+.login-footer{
+    color:rgba(0,0,0,0.45);
+    width:100%;
+    position:fixed;
+    bottom:0;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.header-tit{
+  text-align: center;
+}
+.text{
+    font-size: 24px;
+    color:#4A4A4A;
+    font-family:MicrosoftYaHei;
+    margin: 24px 0;
+}
+.layui-form-item {
+    position: relative;
+    margin-bottom: 24px;
+}
+.layadmin-user-login-icon {
+    position: absolute;
+    left: 1px;
+    top: 1px;
+    width: 38px;
+    line-height: 36px;
+    text-align: center;
+    color: #d2d2d2;
+}
+.layui-form-item .layui-input {
+    padding-left: 38px;
+    height: 40px;
+}
+.layui-form-item button{
+    background-color: #2B8BFF;
+    height: 40px;
+}
+
+
+#Mycanvas{
+    z-index : -1;
+   position: absolute;
+}
+
+.login-img{
+    background-image: url("../images/bg_login.jpg");
+    background-size:cover;
+    background-position: -33px 0;
+}
+
+@media screen and (min-width: 1201px) {
+    .content{
+        width: 1000px;
+    }
+    .login-box{
+        height: 560px;
+        padding: 120px 90px;
+        width: 532px;
+    }
+    .login-img{
+        height: 560px;
+        width: 468px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .content{
+        width: 1000px;
+    }
+    .login-box{
+        height: 560px;
+        padding: 120px 90px;
+        width: 532px;
+    }
+    .login-img{
+        height: 560px;
+        width: 468px;
+    }
+}
+@media screen and (max-width: 900px) {
+    .content{
+        width: 800px;
+    }
+    .login-box{
+        height: 500px;
+        padding: 90px 55px;
+    }
+    .login-img{
+        height: 500px;
+    }
+}
+@media screen and (max-width: 500px) {
+    .content{
+        width: 800px;
+    }
+    .login-box{
+        height: 500px;
+        padding: 90px 55px;
+    }
+    .login-img{
+       display: none;
+    }
+}

@@ -1,0 +1,54 @@
+@layout("/common/_container.html",{css:["/assets/modular/detect/detect.css","/assets/modular/detect/autoCheck.css"],js:["/assets/modular/detect/detect.js"]}){
+<div class="layui-fluid" style="height: 96vh">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div id="detect">
+                    <div class="dHeader">
+                        <img class="Bitmap" src="../../../assets/common/images/Bitmap.png" alt="">
+                        <div class="dTit">
+                            <p class="t-1"><span class="t-1-tit">开始检测</span> <button class="layui-btn layui-btn-primary layui-btn-xs" id="upBtn">查看历史</button></p>
+                            <p class="t-2"></p>
+                            <p class="t-3">
+                                <button class="layui-btn" id="detectBtn">一键检测</button>
+                                <button class="layui-btn" id="importBtn">数据导入</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div id="detectCon">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <div class="layui-row">
+                                <div class="layui-col-md9">
+                                    <div class="proTit">
+                                        <img class="proImg" src="../../../assets/common/images/Bitmap.png" alt="">
+                                        <div class="proPrs">
+                                            <p class="prot">扫描进度11 <span class="proNum">87%</span></p>
+                                            <div class="layui-progress" lay-filter="demo">
+                                                <div class="layui-progress-bar" lay-percent="0%"></div>
+                                            </div>
+                                            <div class="prob">正在检测中，请耐心等待<span class="dot-ani"></span></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="layui-col-md2 layui-col-md-offset1 proBtns">
+                                    <button id="calcBtn" class="layui-btn">返回</button>
+                                    <a href="${ctxPath}/detect/report"><button id="checkBtn" class="layui-btn">查看报告</button></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card-body det-body">
+                            <div class="detCon">
+                                <div id="autoCheckModal">
+                                    <ul class="check-list"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@}

@@ -1,0 +1,102 @@
+.model-box{
+    margin:15px;
+    background-color: #fff;
+    height: 96vh;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+}
+.export-num{
+    color:#F1440E;
+    font-weight: normal;
+}
+.layui-box-con{
+    padding: 0;
+    background: #fff;
+    margin-bottom: 15px;
+}
+.executeBody{
+    padding: 15px;
+}
+.tab-header{
+    height: 60px;
+}
+.tab-header li{
+    margin: 0 20px;
+    line-height: 60px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #686868;
+}
+.layui-tab-title .layui-this:after{
+    height: 61px;
+}
+.layui-chart-card{
+    min-height: 87vh;
+}
+.layui-card-header{
+    height: auto;
+}
+.sIcon{
+    color: #FFF;
+}
+
+.searchInput{
+    position: relative;
+}
+.searchBtn{
+    padding: 0 18px;
+    border-radius: 0 5px 5px 0;
+}
+#test28{
+    cursor: pointer;
+    position: absolute;
+    right: 6px;
+    top: -4px;
+    font-size: 20px;
+}
+
+.layui-form-label{
+    width: 85px;
+}
+.layui-input-block{
+    margin-left: 116px;
+}
+.layui-table-page{
+    width: auto;
+}
+.nothing-chart,.nothing-tab{
+    text-align: center;
+    color: #d4d4d4;
+    line-height: 100px;
+}
+.exportTableBox > .layui-border-box>.layui-table-box>.layui-table-header>.layui-table,
+.exportTableBox > .layui-border-box>.layui-table-box>.layui-table-body>.layui-table{
+    width: 100%;
+}
+.layui-card{
+    box-shadow: none;
+}
+.layui-btn-group .layui-btn-primary:hover{
+    color:#0C79FD;
+    border-color:#0C79FD;
+    border-left:1px solid #0C79FD!important;
+}
+.active{
+    color:#0C79FD;
+    border-color:#0C79FD;
+    border-left:1px solid #0C79FD!important;
+}
+.layui-btn-group .layui-btn:first-child{
+    border-radius: 6px 0 0 6px;
+}
+.layui-btn-group .layui-btn:last-child{
+    border-radius: 0 6px 6px 0;
+}
+.layui-btn-group .layui-btn-primary{
+    border-left:1px solid #C9C9C9;
+}
+.resultTableBox{
+    margin-top: 15px;
+}
+#refresh{
+    border-radius: 5px;
+}

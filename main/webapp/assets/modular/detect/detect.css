@@ -1,0 +1,166 @@
+
+#detect,#detectCon{
+    height: 91vh;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+}
+#detectCon{
+    display: none;
+}
+.layui-card{
+    box-shadow: none;
+}
+.Bitmap{
+    height: 167px;
+}
+
+/*part1*/
+.dHeader{
+    display: flex;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-51%,-51%);
+}
+.t-1{
+    color:rgba(74,74,74,1);
+    line-height:45px;
+    font-size:1.8rem;
+    font-family:PingFang-SC-Medium;
+    font-weight:500;
+    /*margin-bottom: 10px;*/
+}
+.t-2{
+    font-size:16px;
+    /*font-family:PingFang-SC-Medium;*/
+    font-weight:500;
+    color:rgba(153,153,153,1);
+    line-height:33px;
+    /*margin-bottom: 10px;*/
+}
+.t-3{
+    margin-top: 24px;
+}
+.t-1-tit{
+    margin-right:16px;
+}
+.dTit{
+    height: 167px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#upBtn{
+    font-size:14px;
+    font-family:PingFang-SC-Medium;
+    font-weight:500;
+    color:rgba(155,155,155,1);
+    line-height:20px;
+    border:1px solid rgba(230,230,230,1);
+    width: 78px;
+    height: 28px;
+}
+#detectBtn{
+    margin-right:32px;
+    border-radius: 4px
+}
+#importBtn{
+    border-radius: 4px;
+}
+
+/*part2*/
+
+.layui-card-header{
+    padding: 20px 0;
+    height: auto;
+}
+.proTit{
+    display: flex;
+    padding-left: 50px;
+}
+.proImg{
+    height: 80px;
+    margin-right: 15px;
+}
+.proBtns{
+    line-height: 80px;
+}
+.proPrs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+}
+.prot,.prob{
+    line-height: 1;
+}
+.proNum{
+    font-size: 25px;
+}
+.layui-bg-red{
+    background-color: #45c815 !important
+}
+.proRed{
+    position: relative;
+    top:-50px;
+    color:#000;
+    width: 20%;
+}
+#checkBtn{
+    display: none;
+}
+#calcBtn{
+    display: inline-block;
+}
+.detCon{
+    overflow-y: scroll;
+}
+.det-body{
+    height: 58vh;
+    overflow-y: scroll;
+}
+.check-r{
+    cursor: pointer;
+}
+
+
+
+.dot-ani {
+    display: inline-block;
+    height: 12px;
+    line-height: 12px;
+    overflow: hidden;
+}
+.dot-ani::after {
+    display: inline-table;
+    white-space: pre;
+    content: "\A.\A..\A...\A....\A.....\A......";
+    animation: spin 2s steps(4) infinite;
+    font-family: simsun;
+}
+@keyframes spin {
+    to{
+        -webkit-transform:translateY(-48px);
+        transform:translateY(-48px)
+    }
+}
+
+
+
+
+
+
+
+
+
+/*.auto-check-img{*/
+    /*padding: 130px 15px 333px 150px;*/
+/*}*/
+/*!*.auto-check-result{*/
+    /*background: url("../../common/images/Bitmap.png");*/
+/*}*!*/
+/*.auto-check-message{*/
+    /*padding: 150px 20px 333px 0px;*/
+/*}*/

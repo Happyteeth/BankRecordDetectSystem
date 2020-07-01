@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ylink.aml.modular.system.mapper.ExecuteManageMapper">
+
+    <sql id="base_column_list">
+        t2.RULE_RUN_ID AS ruleRunId,
+        t2.SUBMIT_TIME AS submitTime,
+        t1.RULE_NAME AS ruleName,
+        IFNULL(t2.RULE_PRIORITY, '') AS rulePriority,
+        CASE t1.RULE_TYPE
+            WHEN '1' THEN '数据分析'
+            WHEN '2' THEN '模型'
+        END AS ruleType,
+        CASE t2.STATUS
+            WHEN '1' THEN '等待执行'
+            WHEN '2' THEN '运行中'
+            WHEN '7' THEN '运行中'
+            WHEN '8' THEN '执行完成'
+            WHEN 'A' THEN '已取消'
+            WHEN 'B' THEN '已暂停'
+            ELSE '执行异常'
+        END AS status,
+        t2.V_INSERT_USER AS vInsertUser,
+        t1.MODEL_DESC AS modelDesc
+    </sql>
+
+    <select id="list" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT
+        <include refid="base_column_list"/>
+        FROM RULE_DEF t1 LEFT JOIN V_RULE_RUN t2 ON t1.RULE_ID = t2.RULE_ID
+        WHERE t2.AUTO_CHECK_ID = 0
+        <if test="params.vInsertUser != null and params.vInsertUser != ''">
+            AND t2.V_INSERT_USER = #{params.vInsertUser}
+        </if>
+        <if test="params.ruleType != null and params.ruleType != ''">
+            AND t1.RULE_TYPE = #{params.ruleType}
+        </if>
+        <if test="params.fuzzy != null and params.fuzzy != ''">
+            AND t1.RULE_NAME like #{params.fuzzy}
+        </if>
+        <if test="params.sDate != null and params.sDate != ''">
+            AND t2.SUBMIT_TIME &gt;= #{params.sDate}
+        </if>
+        <if test="params.eDate != null and params.eDate != ''">
+            AND t2.SUBMIT_TIME &lt;= #{params.eDate}
+        </if>
+        <if test="params.orderBy != null and params.orderBy != ''">
+            ORDER BY ${params.orderBy}
+        </if>
+    </select>
+</mapper>

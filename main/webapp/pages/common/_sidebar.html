@@ -1,0 +1,45 @@
+@/* 侧边栏 */
+<div class="layui-side">
+    <div class="layui-side-scroll">
+        <ul id="sideList" class="layui-nav layui-nav-tree" lay-filter="admin-side-nav" >
+        @for(menu in menus) {
+            @if(tool.isEmpty(menu.children)){
+            <li class="layui-nav-item">
+                <a lay-href="${menu.url}"><img src="${menu.icon}"style="margin-bottom: 4px;">&emsp;<cite>${menu.name}</cite></a>
+            </li>
+            @}else{
+            <li class="layui-nav-item">
+                <a><img src="${menu.icon}" style="margin-bottom: 5px;"></i>&emsp;<cite>${menu.name}</cite></a>
+                <dl class="layui-nav-child" style="padding: 0px">
+                @for(subMenu in menu.children){
+                    @if(tool.isEmpty(subMenu.children)){
+                    <dd style="background-color: #2B8BFF"><a lay-href="${subMenu.url}">${subMenu.name}</a></dd>
+                    @}else{
+                    <dd>
+                        <a>${subMenu.name}</a>
+                        <dl class="layui-nav-child">
+                        @for(subSubMenu in subMenu.children){
+                            @if(tool.isEmpty(subSubMenu.children)){
+                            <dd style="background-color: #2B8BFF"><a lay-href="${subSubMenu.url}">${subSubMenu.name}</a></dd>
+                            @}else{
+                            <dd>
+                                <a>${subSubMenu.name}</a>
+                                <dl class="layui-nav-child">
+                                @for(subSubSubMenu in subSubMenu.children){
+                                    <dd><a lay-href="${subSubSubMenu.url}">${subSubSubMenu.name}</a></dd>
+                                @}
+                                </dl>
+                            </dd>
+                            @}
+                        @}
+                        </dl>
+                    </dd>
+                    @}
+                @}
+                </dl>
+            </li>
+            @}
+        @}
+        </ul>
+    </div>
+</div>

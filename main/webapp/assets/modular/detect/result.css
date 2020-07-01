@@ -1,0 +1,100 @@
+
+#detectCon{
+    height: 91vh;
+    padding: 20px;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, .05);
+}
+.layui-card{
+    box-shadow: none;
+}
+
+/*part2*/
+
+.layui-card-header{
+    padding: 20px 0;
+    height: auto;
+}
+.proTit{
+    display: flex;
+    padding-left: 50px;
+}
+.proImg{
+    height: 80px;
+    margin-right: 15px;
+}
+.proBtns{
+    line-height: 80px;
+}
+.proPrs{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 100%;
+}
+.prot,.prob{
+    line-height: 1;
+}
+.proNum{
+    font-size: 25px;
+}
+.layui-bg-red{
+    background-color: #45c815 !important
+}
+.proRed{
+    position: relative;
+    top:-50px;
+    color:#000;
+    width: 20%;
+}
+#checkBtn,#reBtn{
+    display: none;
+}
+#calcBtn{
+    display: inline-block;
+}
+.detCon{
+    overflow-y: scroll;
+}
+.det-body{
+    height: 70vh;
+    overflow-y: scroll;
+}
+.check-r{
+    cursor: pointer;
+}
+.s-list li:hover{
+  background-color: #e6e6e6;
+}
+#autoCheckId{
+    display: none;
+}
+.prob{
+    display: flex;
+}
+.prob span:nth-child(2){
+    margin-left: auto;
+}
+.f-li{
+    padding: 6px 25px;
+}
+
+
+.dot-ani {
+    display: inline-block;
+    height: 12px;
+    line-height: 12px;
+    overflow: hidden;
+}
+.dot-ani::after {
+    display: inline-table;
+    white-space: pre;
+    content: "\A.\A..\A...\A....\A.....\A......";
+    animation: spin 2s steps(4) infinite;
+    font-family: simsun;
+}
+@keyframes spin {
+    to{
+        -webkit-transform:translateY(-48px);
+        transform:translateY(-48px)
+    }
+}

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ylink.aml.modular.system.mapper.RuleAutoCheckMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ylink.aml.modular.system.entity.RuleAutoCheck">
+        <id column="AUTO_CHECK_ID" property="autoCheckId" />
+        <result column="STATUS" property="status" />
+        <result column="RULE_CNT" property="ruleCnt" />
+        <result column="RUN_TIME" property="runTime" />
+        <result column="D_INSERT" property="dInsert" />
+        <result column="V_INSERT_USER" property="vInsertUser" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        AUTO_CHECK_ID AS autoCheckId, STATUS AS status, RULE_CNT AS ruleCnt, RUN_TIME AS runTime, D_INSERT AS dInsert, V_INSERT_USER AS vInsertUser
+    </sql>
+</mapper>

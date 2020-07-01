@@ -1,0 +1,63 @@
+@layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/system/communication/communication_edit.js"]}){
+
+<form id="communicationForm" lay-filter="communicationForm" class="layui-form model-form">
+    <input name="communicationId" type="hidden"/>
+    <input name="activistId" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">纪要详情<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <textarea name="communicationInfo" placeholder="请输入详情"  class="layui-textarea" lay-verify="required" rows="10xpx" required></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">沟通时间<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input name="communicationTime" id="communicationTime"  type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系状态<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <select id="contactStatus" name="contactStatus">
+                <option value=""></option>
+                <option value="1">已联系</option>
+                <option value="2">联系失败</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">客户意愿<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <select id="customerWishes" name="customerWishes">
+                <option value=""></option>
+                <option value="0">感兴趣</option>
+                <option value="1">不感兴趣</option>
+                <option value="2">待定</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">再次跟进</label>
+        <div class="layui-input-block">
+            <select id="followUpAgain" name="followUpAgain">
+                <option value=""></option>
+                <option value="0">是</option>
+                <option value="1">否</option>
+            </select>
+        </div>
+    </div>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+    <div class="layui-form-item text-right">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" lay-filter="btnSubmit" lay-submit id="add">保存</button>
+    </div>
+
+</form>
+@}

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ylink.aml.modular.system.mapper.RuleParaDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ylink.aml.modular.system.entity.RuleParaDef">
+        <id column="RULE_ID" property="ruleId"/>
+        <result column="PARA_STRING" property="paraString"/>
+        <result column="PARA_DESC" property="paraDesc"/>
+        <result column="PARA_VALUE" property="paraValue"/>
+        <result column="D_INSERT" property="dInsert"/>
+        <result column="D_UPDATE" property="dUpdate"/>
+        <result column="V_INSERT_USER" property="vInsertUser"/>
+        <result column="V_UPDATE_USER" property="vUpdateUser"/>
+    </resultMap>
+
+<sql id="ruledef_list">
+    RULE_ID,PARA_STRING,PARA_DESC,PARA_VALUE,D_INSERT,D_UPDATE,V_INSERT_USER,V_UPDATE_USER
+</sql>
+
+    <select id="findByexcel" resultType="com.ylink.aml.modular.system.entity.RuleParaDef" >
+        SELECT
+        <include refid="ruledef_list"/>
+        FROM RULE_PARA_DEF GROUP BY
+        RULE_ID
+    </select>
+
+
+    <select id="selectByIdl" resultType="com.ylink.aml.modular.system.entity.RuleParaDef">
+        SELECT * FROM RULE_PARA_DEF WHERE RULE_ID=#{ruleId}
+    </select>
+
+
+</mapper>

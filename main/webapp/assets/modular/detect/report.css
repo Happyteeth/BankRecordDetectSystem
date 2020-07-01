@@ -1,0 +1,110 @@
+
+#report,#detectCon{
+    height: 100%;
+    padding: 20px;
+}
+.report_title{
+    position: relative;
+    top:-30px;
+    left: -30px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    background: rgb(250,250,250);
+    padding: 10px 20px;
+}
+.title_left{
+    display: flex;
+    align-items: center;
+}
+.title_name{
+    margin-right: 30px;
+}
+.report_dialog{
+    background-color: rgb(255,248,235);
+    padding: 20px;
+    color: rgb(125,117,105);
+}
+.dialog_iconBox{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.dialog_content{
+    margin-left: 30px;
+    line-height: 40px;
+}
+ .margin_bottom{
+    margin-bottom: 0 !important;
+}
+ .clickTop{
+     cursor: pointer !important;
+ }
+.layui-colla-title{
+    height: 30px;
+    line-height: 30px;
+}
+.layui-table-view .layui-table td, .layui-table-view .layui-table th{
+    padding: 0;
+}
+.layui-icon-close-fill:before{
+    font-size: 24px;
+    color:#afafaf;
+    cursor: pointer;
+}
+.exportTableBox > .layui-border-box>.layui-table-box>.layui-table-header>.layui-table,
+.exportTableBox > .layui-border-box>.layui-table-box>.layui-table-body>.layui-table{
+    width: 100%;
+}
+.layui-collapse,.layui-colla-content, .layui-colla-item{
+    border:none;
+}
+.layui-colla-title{
+    background-color: transparent;
+}
+.resCount{
+    color:#afafaf;
+    font-size: 12px;
+}
+.layui-table-cell{
+    margin: auto;
+}
+.resred{
+    color: #ff8c00;
+    font-weight: 500;
+}
+.report_dialog{
+    display: none;
+}
+.goTop {
+    height: 50px;
+    width: 50px;
+    background:#fff;
+    border-radius: 50%;
+    position: fixed;
+    top: 90%;
+    right: 3%;
+    display: none;
+    cursor: pointer;
+    box-shadow: 0 1px 6px 0 rgba(0, 0, 0, .1);
+    text-align: center;
+    line-height: 50px;
+}
+
+.goTop i {
+    font-size: 20px;
+    font-weight: bold;
+    color: rgba(43,139,255,1);
+}
+.goTop:hover{
+    background:rgba(43,139,255,1);
+}
+.goTop:hover i{
+    color: #Fff;
+}
+.pay-block{
+    display: inline-block;
+}
+.pay-no-block{
+    display: none;
+}

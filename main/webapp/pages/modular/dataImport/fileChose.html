@@ -1,0 +1,29 @@
+@layout("/common/_container.html",{js:["/assets/modular/dataImport/bdFileImport.js"]}){
+<div class="layui-card">
+    <div class="layui-card-body">
+        <div class="layui-form toolbar">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <form class="layui-form">
+                    <label class="layui-form-label">文件路径</label>
+                    <div class="layui-input-block" style="width:290px;">
+                        <select id="filePath" lay-filter="filePathFilter" class="layui-input">
+                        </select>
+                    </div>
+                    </form>
+                </div>
+                <div class="layui-inline">
+                    <input id="fileName" class="layui-input" type="text" placeholder="文件名"/>
+                </div>
+<!--                <div class="layui-inline">
+                    <input id="path" class="layui-input" type="text" placeholder="路径"/>
+                </div>-->
+                <div class="layui-inline">
+                    <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                </div>
+            </div>
+        </div>
+        <table class="layui-table" id="bdFileImportTable" lay-filter="bdFileImportTable"></table>
+    </div>
+</div>
+@}

@@ -1,0 +1,125 @@
+/*.analysis-box{*/
+    /*height: 100vh;*/
+    /*padding: 20px;*/
+    /*overflow: scroll;*/
+/*}*/
+.layui-card-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.name-list{
+    height: 150px;
+    box-shadow:0 0 4px #cecece;
+    border-radius: 4px;
+    overflow: scroll;
+    padding: 5px;
+}
+.dataNameBox,.dataTableBox{
+    display: none;
+}
+ .layui-table-view{
+    margin: 0 0 0 5px;
+}
+.dataTable-1{
+    padding-left: 5px;
+}
+#dataTable{
+    margin: 0;
+}
+.site-demo-active{
+    position: relative;
+    right: 100px;
+}
+#arryBox{
+    height: 20px!important;
+    overflow: scroll;
+}
+.queryAdd,.cAddDiv{
+    line-height: 32px;
+    padding-left: 24px;
+}
+.btn-add{
+    width: 65px;
+    position: relative;
+    top: -1px;
+}
+.queryAddRow{
+    /*border-bottom: 1px solid #ddd;*/
+}
+.queryTableBox,.exportTableBox,.cTableBox{
+    display: none;
+}
+.layui-input{
+    height: 32px;
+    line-height: 32px;
+}
+.exportTableBox{
+    display: none;
+}
+.export-tab{
+    position: absolute;
+    z-index: 999;
+}
+.nothing{
+    border:1px solid #f6f6f6;
+    padding: 20px;
+    text-align: center;
+    color: #c1c1c1;
+    font-size: 16px;
+}
+/*.exportTableHeader{*/
+    /*position: relative;*/
+    /*top:0;*/
+/*}*/
+.cTableBox{
+    margin-left: 40px;
+}
+
+.layui-table td, .layui-table th{
+    padding: 5px 15px!important;
+}
+.sChartRow{
+    display: none;
+}
+.dataTableBox .layui-table-body,.queryTableBox .layui-table-body,.cTableBox .layui-table-body{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.layui-table-body .layui-table{
+    margin-bottom: 2px;
+}
+.layui-textarea{
+    min-height: 20px;
+}
+.qTime,.qTime2,.qTime3{
+    display: none;
+}
+#queryAdd,#cAdd{
+    border: 1px solid #0c79fd;
+    color: #0c79fd;
+}
+.btns{
+    width: 80px;
+}
+.data-btns{
+     padding: 0 15px;
+     text-align: center;
+     width: 100px;
+ }
+.export-num{
+    color:#F1440E;
+    font-weight: normal;
+}
+
+
+.step:before{
+    content: "";
+    width: 16px;
+    height: 14px;
+    background: url("../../common/images/locat.png") no-repeat;
+    display: inline-block;
+    position: relative;
+    top: 2px;
+    background-size: 13px 14px;
+}

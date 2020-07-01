@@ -1,0 +1,88 @@
+@layout("/common/_container.html",{css:["/assets/modular/dataImport/fileImport.css"],js:["/assets/modular/dataImport/fileImport.js"]}){
+<div class="layui-fluid">
+    <div class="layui-card">
+        <div class="layui-card-body file-box">
+            <form class="layui-form" enctype="multipart/form-data" id="import">
+                <div class="layui-row ">
+                    <div class="layui-col-md4">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="text-align: left;width: auto;">选择文件:</label>
+                            <!--<button type="button" id="bdFile" name="bdFile" style="display: none"></button>-->
+                            <div class="layui-input-block" style="margin-left: 90px;">
+                                <input type="text" name="title" lay-verify="title" autocomplete="off" class="layui-input" id="bdFileChose"  >
+                            </div>
+                        </div>
+                    </div>
+                    <div class="layui-col-md4 layui-col-md-offset1">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label" style="text-align: left;width: auto;">导入表:</label>
+                            <div class="layui-input-block" style="margin-left: 90px;">
+                                <select name="tableName" id="tableName" lay-verify="required" lay-filter="tableNameFilter" >
+                                    <option value="">请选择</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row ">
+                    <div class="layui-col-md12">
+                        <div class="layui-form-item" style="display: flex">
+                            <div style="display: flex">
+                                <label class="layui-form-label" style="text-align: left;width: auto;">文件格式:</label>
+                                <div>
+                                    <input type="radio" name="fileFormat" value="1" title="CSV" checked>
+                                    <input type="radio" name="fileFormat" value="2" title="TXT">
+                                </div>
+                            </div>
+                            <div style="display: flex">
+                                <label class="layui-form-label">字段分隔符:</label>
+                                <div>
+                                    <input type="radio" name="delimitField" value="," title=",(逗号)">
+                                    <input type="radio" name="delimitField" value="|" title="|(短竖)" checked>
+                                </div>
+                            </div>
+                            <div style="display: flex">
+                                <label class="layui-form-label">存在标题行:</label>
+                                <div>
+                                    <input type="radio" name="ifTitle" value="1" title="是">
+                                    <input type="radio" name="ifTitle" value="0" title="否" checked>
+                                </div>
+                            </div>
+                            <!--                        <div class="layui-inline">-->
+                            <!--                        <div class="layui-form-item">-->
+                            <!--                                <button  type="button" class="layui-btn" lay-filter="btnSubmit" lay-submit id="bdCommit">开始导入</button>-->
+                            <!--                                <button  type="button" class="layui-btn" id="refresh">刷新</button>-->
+                            <!--                        </div>-->
+                            <!--                        </div>-->
+                        </div>
+                    </div>
+                </div>
+                <div class="layui-row ">
+                    <div class="layui-col-md12" style="padding:0 15px">
+                        <button  type="button" class="layui-btn layui-btn-sm file-btns" lay-filter="btnSubmit" lay-submit id="bdCommit">导入</button>
+                        <button  type="button" class="layui-btn layui-btn-sm file-btns layui-btn-primary" id="refresh">刷新</button>
+                    </div>
+                </div>
+
+            </form>
+            <div class="layui-card-body">
+                <table class="layui-table" id="fileImportTable" lay-filter="fileImportTable"></table>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/html" id="tableBar">
+
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="view">预览</a>
+    <a class="layui-btn  layui-btn-xs" lay-event="del" style=" background-color: #0C79FD" >删除</a>
+
+</script>
+<script type="text/html" id="xuhao">
+    {{d.LAY_TABLE_INDEX+1}}
+</script>
+<script type="text/html" id="status">
+    <div class="layui-progress layui-progress-big" lay-showpercent="true" lay-filter="demo">
+        <div class="layui-progress-bar layui-bg-red" id="progress" lay-percent="0%"></div>
+    </div>
+</script>
+@}

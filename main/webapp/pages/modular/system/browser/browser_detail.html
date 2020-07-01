@@ -1,0 +1,25 @@
+@layout("/common/_container.html",{plugins:["ztree"],js:["/assets/modular/system/browser/browser_detail.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">线索详情</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="browserDetailTable" lay-filter="browserDetailTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@}

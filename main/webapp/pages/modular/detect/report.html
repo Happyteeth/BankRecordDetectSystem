@@ -1,0 +1,85 @@
+@layout("/common/_container.html",{css:["/assets/modular/detect/report.css"],js:["/assets/modular/detect/report.js"]}){
+<div class="layui-fluid">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div id="report">
+                    <div class="report_title" style="margin-left: 10px">
+                        <div class="title_left">
+                            <div class="title_name"
+                                 style="font-family:'PingFang-SC-Medium';line-height:22px;color: #000000;font-size: 16px;font-weight: 500;">
+                                交易记录检测报告
+                            </div>
+                            <!--<a class="historyBtn">-->
+                                <!--<button class="layui-btn "-->
+                                        <!--style="padding: 0px;height: 32px;width: 50px;background:rgba(12,121,253,1);line-height: 32px;"-->
+                                <!--&gt;返回-->
+                                <!--</button>-->
+                            <!--</a>-->
+                        </div>
+                        <div>
+                            <button class="layui-btn  download" id="batchExport"
+                                    style="padding: 0px;font-family:'PingFang-SC-Medium';color: #ffffff;width: 88px;height: 32px;font-size: 14px;text-align: center;background:rgba(12,121,253,1);
+                                        line-height: 32px;">
+                                导出数据
+                            </button>
+                            <button class="layui-btn " id="renderPdf"
+                                    style="padding: 0px;font-family:'PingFang-SC-Medium';color: #ffffff;width: 88px;height: 32px;font-size: 14px;background:rgba(12,121,253,1);
+                                        line-height: 32px;">
+                                导出报告
+                            </button>
+                        </div>
+                    </div>
+                    <div class="report_dialog">
+                        <div class="dialog_iconBox">
+                            <h2><i class="layui-icon layui-icon-about"
+                                   style="font-size: 20px; margin-right:10px;:  color: rgb(228,200,152);"></i>提示信息</h2>
+                            <i class="layui-icon layui-icon-close-fill" onclick="closeDialog()"></i>
+                        </div>
+                        <div class="dialog_content">
+                            导出报告前，请先在本页面展开您所需要的模型
+                        </div>
+
+                    </div>
+                    <div id="export_content">
+                        <!--                    <form class="layui-form" enctype="multipart/form-data">
+                                                <div class="layui-form-item margin_bottom">
+                                                    <label class="layui-form-label" style="width: 230px">被检查机构是否按要求提供数据文件:</label>
+                                                    <div class="layui-input-block ">
+                                                        <input type="radio" name="ifTitle" value="1" title="是" checked>
+                                                        <input type="radio" name="ifTitle" value="0" title="否">
+                                                    </div>
+                                                </div>
+                                                <div class="layui-form-item margin_bottom">
+                                                    <label class="layui-form-label" style="width: 230px">被检查机构提供的数据文件是否齐全:</label>
+                                                    <div class="layui-input-block">
+                                                        <input type="radio" name="b" value="1" title="非常齐全" checked>
+                                                        <input type="radio" name="b" value="0" title="比较齐全">
+                                                        <input type="radio" name="b" value="0" title="不齐全">
+                                                    </div>
+                                                </div>
+                                                <div class="layui-form-item margin_bottom">
+                                                    <label class="layui-form-label" style="width: 230px">检查机构是否配合反洗钱检查:</label>
+                                                    <div class="layui-input-block">
+                                                        <input type="radio" name="c" value="1" title="非常配合" checked>
+                                                        <input type="radio" name="c" value="0" title="比较配合">
+                                                        <input type="radio" name="c" value="0" title="不配合">
+                                                    </div>
+                                                </div>
+                                            </form>-->
+                        <div>
+                            <div class="layui-collapse" id="modelList" lay-filter="test">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="goTop">
+                    <i class="layui-icon layui-icon-up top-icon"></i>
+                </div>
+            </div>
+            <script type="text/javascript" src="${ctxPath}/assets/common/js/html2canvas.js"></script>
+            <script type="text/javascript" src="${ctxPath}/assets/common/js/jsPdf.debug.js"></script>
+        </div>
+    </div>
+</div>
+@}

@@ -1,0 +1,121 @@
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%; }
+
+/*.modal {*/
+  /*position: fixed;*/
+  /*top: 0;*/
+  /*left: 0;*/
+  /*width: 100%;*/
+  /*height: 100%;*/
+  /*background: rgba(238, 238, 238, 0.5);*/
+  /*display: table;*/
+  /*z-index: 100; }*/
+  /*.modal .modal-content {*/
+    /*font-family: 'Microsoft YaHei', sans-serif;*/
+    /*display: table-cell;*/
+    /*vertical-align: middle;*/
+    /*text-align: center; */
+  /*}*/
+/*.check-box {*/
+    /*display: inline-block;*/
+    /*background: #fff;*/
+    /*border: 1px solid #e0e0e0;*/
+    /*box-shadow: 0 2px 15px #c4c4c4;*/
+    /*padding: 60px;*/
+    /*min-width: 400px;*/
+    /*box-sizing: border-box;*/
+/*}*/
+.check-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+}
+.check-list li {
+    padding: 6px 25px;
+    font-size: 14px;
+    line-height: 22px;
+    color: #999;
+    text-align: left;
+}
+.check-list li .check-icon {
+    width: 16px;
+    height: 16px;
+    background: url("../../../assets/common/images/check.png") no-repeat center;
+    color: #fff;
+    display: block;
+    float: left;
+    margin-right: 23px;
+    text-align: center;
+}
+.check-list li.checking {
+    color: #ff8c00;
+}
+.check-list li p{
+    font-size: 15px;
+    font-family:PingFang-SC-Bold;
+    font-weight:bold;
+    color:rgba(74,74,74,1);
+
+}
+
+.check-list li.check,li.fail,li.success {
+    color: #666;
+}
+/*初始中*/
+.check-list li.check .check-icon {
+    background: url("../../../assets/common/images/check.png")  no-repeat left center;
+}
+/*运行中*/
+.check-list li.checking .check-icon {
+    background: url("../../../assets/common/images/checking.png")  no-repeat left center;
+}
+/*失败*/
+.check-list li.fail .check-icon {
+    background: url("../../../assets/common/images/fail.png") no-repeat left center;
+}
+/*成功*/
+.check-list li.success .check-icon {
+    background: url("../../../assets/common/images/success.png") no-repeat left center;
+}
+/*取消*/
+.check-list li.cancel .check-icon {
+    background: url("../../../assets/common/images/cancel.png") no-repeat left center;
+}
+.check-list li .check-text {
+    max-width: 300px;
+    white-space: normal;
+    overflow: hidden;
+    /*display: block;*/
+    word-break: break-all;
+}
+.check-r{
+    float: right;
+}
+.check-num{
+    color: #ff8c00;
+}
+.check-bottom {
+    padding-top: 12px;
+}
+.check-bottom .check-btn {
+    display: inline-block;
+    width: 100%;
+    height: 36px;
+    line-height: 36px;
+    background: #e5e5e5;
+    font-size: 16px;
+    color: #aaa;
+    text-align: center;
+    border-radius: 5px;
+    cursor: not-allowed;
+}
+.check-bottom .check-btn.active {
+    background: #6089fb;
+    color: #fff;
+    cursor: pointer;
+}
+

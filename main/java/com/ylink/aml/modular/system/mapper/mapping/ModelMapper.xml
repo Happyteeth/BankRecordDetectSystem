@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ylink.aml.modular.system.mapper.ModelMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ylink.aml.modular.system.entity.Model">
+        <id column="RULE_ID" property="ruleId"/>
+        <result column="RULE_NAME" property="ruleName"/>
+        <result column="RULE_WEB" property="ruleWeb"/>
+        <result column="TASK_PROGRAM" property="taskProgram"/>
+        <result column="RULE_PROG" property="ruleProg"/>
+        <result column="CHART_TYPE" property="chartType"/>
+        <result column="CHART_PROG" property="chartProg"/>
+        <result column="RULE_TYPE" property="ruleType"/>
+        <result column="MODEL_SOURCE" property="modelSource"/>
+        <result column="MODEL_DESC" property="modelDesc"/>
+        <result column="MODEL_TYPE1_ITEM_ID" property="modelType1ItemId"/>
+        <result column="MODEL_TYPE1_ITEM_VAL_ID" property="modelType1ItemValId"/>
+        <result column="MODEL_TYPE2_ITEM_ID" property="modelType2ItemId"/>
+        <result column="MODEL_TYPE2_ITEM_VAL_ID" property="modelType2ItemValId"/>
+        <result column="C_DEL_FLAG" property="cDelFlag"/>
+        <result column="IF_AUTO_CHECK" property="ifAutoCheck"/>
+        <result column="D_INSERT" property="dInsert"/>
+        <result column="D_UPDATE" property="dUpdate"/>
+        <result column="V_INSERT_USER" property="vInsertUser"/>
+        <result column="V_UPDATE_USER" property="vUpdateUser"/>
+       <result column="CHART_VAL" property="chartVal"/>
+        <result column="CHART_X" property="chartX"/>
+    </resultMap>
+
+
+    <sql id="model_List">
+        RULE_ID,RULE_NAME,RULE_WEB,TASK_PROGRAM,RULE_PROG,CHART_TYPE,CHART_PROG,RULE_TYPE,MODEL_SOURCE,MODEL_DESC,MODEL_TYPE1_ITEM_ID,MODEL_TYPE1_ITEM_VAL_ID,
+        MODEL_TYPE2_ITEM_ID,MODEL_TYPE2_ITEM_VAL_ID,C_DEL_FLAG,D_INSERT,D_UPDATE,V_INSERT_USER,V_UPDATE_USER,IF_AUTO_CHECK,CHART_X,CHART_VAL
+    </sql>
+
+
+
+    <select id="findexcellist" resultType="com.ylink.aml.modular.system.entity.Model" >
+        SELECT
+        <include refid="model_List"/>
+        FROM RULE_DEF WHERE RULE_TYPE="2"
+        GROUP BY
+        RULE_ID
+    </select>
+
+    <!--    <select id="selectList" parameterType="cn.net.cfss.ying.base.modular.system.entity.Model" resultType="cn.net.cfss.ying.base.modular.system.entity.Model" >
+            SELECT
+            <include refid="model_List"/>
+            FROM RULE_DEF
+            WHERE  MODEL_TYPE1_ITEM_ID=#{model.getModelType1ItemId} and MODEL_TYPE1_ITEM_VAL_ID=#{model.getModelType1ItemValId}
+        </select>-->
+
+
+
+
+    <select id="selectBylist" resultType="com.ylink.aml.modular.system.entity.Model" >
+        SELECT
+        <include refid="model_List"/>
+        FROM RULE_DEF
+        WHERE  MODEL_TYPE1_ITEM_VAL_ID=#{vItemValIdPar} and MODEL_TYPE1_ITEM_ID=#{vItemId} and MODEL_TYPE2_ITEM_VAL_ID=#{vItemValId} and MODEL_TYPE2_ITEM_ID=#{vItemId}
+    </select>
+
+
+    <select id="selectModelV" resultType="com.ylink.aml.modular.system.model.ModelDto" >
+        SELECT RULE_ID,MODEL_DESC,RULE_NAME,RULE_PROG,CHART_PROG,
+        MODEL_TYPE1_ITEM_ID,MODEL_TYPE2_ITEM_ID,MODEL_TYPE1_ITEM_VAL_ID,
+       MODEL_TYPE2_ITEM_VAL_ID,V_INSERT_USER,IF_AUTO_CHECK
+        FROM RULE_DEF
+        WHERE
+       RULE_ID=#{ruleId}
+    </select>
+
+
+    <update id="updateModel">
+        UPDATE RULE_DEF set  MODEL_TYPE1_ITEM_VAL_ID=#{modelType1ItemValId},
+        MODEL_TYPE2_ITEM_VAL_ID=#{modelType2ItemValId} , RULE_NAME=#{ruleName} WHERE RULE_ID=#{ruleId}
+    </update>
+
+
+
+
+
+    <select id="selectModelt" resultType="com.ylink.aml.modular.system.model.ModelDto" >
+        select a.RULE_ID,a.MODEL_DESC,a.RULE_NAME,a.RULE_PROG,a.CHART_PROG,
+        a.MODEL_TYPE1_ITEM_ID,a.MODEL_TYPE2_ITEM_ID,a.MODEL_TYPE1_ITEM_VAL_ID,
+        a.MODEL_TYPE2_ITEM_VAL_ID,b.RULE_ID,b.PARA_STRING,
+        b.PARA_VALUE,b.PARA_DESC,a.V_INSERT_USER
+        from RULE_DEF a INNER JOIN RULE_PARA_DEF b ON a.RULE_ID=b.RULE_ID
+        WHERE
+        a.RULE_ID=#{ruleId}
+    </select>
+
+    <select id="selectruleName" resultType="com.ylink.aml.modular.system.model.DictionaryValAndmodelDto">
+        SELECT DISTINCT a.RULE_NAME AS threename,b.V_VAL_NAME AS firname,a.MODEL_TYPE1_ITEM_ID,
+        a.MODEL_TYPE1_ITEM_VAL_ID,a.RULE_ID AS ruleId,
+        b.V_ITEM_ID AS vItemId,b.V_ITEM_VAL_ID AS vItemValId,
+        a.MODEL_TYPE1_ITEM_ID AS atypeId,
+        a.MODEL_TYPE1_ITEM_VAL_ID AS atypevalId
+        FROM RULE_DEF a INNER JOIN TBS_DICTIONARY_VAL b
+        ON a.MODEL_TYPE1_ITEM_ID = b.v_item_id AND
+        a.MODEL_TYPE1_ITEM_VAL_ID = b.V_ITEM_VAL_ID
+        WHERE a.`RULE_NAME`  LIKE CONCAT('%',#{ruleName},'%')
+    </select>
+    <select id="selectval" resultType="com.ylink.aml.modular.system.model.ModelvalDto">
+        SELECT
+        a.MODEL_TYPE1_ITEM_VAL_ID,a.MODEL_TYPE2_ITEM_VAL_ID,
+        b.V_ITEM_VAL_ID AS vItemValId1,
+        c.V_ITEM_VAL_ID AS vItemValId2
+        FROM RULE_DEF a INNER JOIN TBS_DICTIONARY_VAL b
+        ON a.MODEL_TYPE1_ITEM_ID = b.v_item_id AND
+        a.MODEL_TYPE1_ITEM_VAL_ID = b.V_ITEM_VAL_ID
+        INNER JOIN TBS_DICTIONARY_VAL c ON
+        a.MODEL_TYPE2_ITEM_ID = c.v_item_id
+        AND a.MODEL_TYPE2_ITEM_VAL_ID = c.V_ITEM_VAL_ID
+    </select>
+
+
+
+
+</mapper>

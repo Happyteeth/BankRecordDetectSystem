@@ -1,0 +1,395 @@
+@layout("/common/_container.html",{css:["/assets/modular/dataAnalysis/dataAnalysis.css"],js:["/assets/modular/dataAnalysis/dataAnalysis.js"]}){
+<div class="layui-fluid" style="height: 96vh">
+    <div class="analysis-box">
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <span class="step">第一步：选择表和字段</span>
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md5">
+                                <form id="analysisForm" class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">选择表单</label>
+                                        <div class="layui-input-block">
+                                            <select id="dataList" name="dataList" lay-filter="dataList">
+                                                <option value=""></option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item dataNameBox" pane="" >
+                                        <div id="dataNameList" class="layui-input-block name-list">
+                                            <!--<p><input type="checkbox" value="1" lay-skin="primary" lay-filter="dataName" title="fff"></p>-->
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="layui-col-md7 dataTable-1">
+                                <div class="dataTableBox">
+                                    <table id="dataTable" class="layui-table" lay-filter="dataTable">
+                                        <thead>
+                                        <tr>
+                                            <th lay-data="{field:'tableName'}">已选择表</th>
+                                            <th lay-data="{field:'columnList'}">已选择字段</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="dataTableList"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <span class="step">第二步：设置查询条件</span>
+<!--                        <button id="query" class="layui-btn layui-btn-sm data-btns">查询</button>-->
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row queryAddRow">
+                            <div class="layui-col-md3">
+                                <form  class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">选择字段</label>
+                                        <div class="layui-input-block">
+                                            <select id="qDataNameList" name="qDataNameList" lay-filter="qDataNameList">
+
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="layui-col-md3">
+                                <form  class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">查询条件</label>
+                                        <div class="layui-input-block">
+                                            <select id="qOperat" name="qOperat" lay-filter="qOperat">
+                                                <!--<option value=""></option>-->
+                                                <!--<option value="1"> > </option>-->
+                                                <!--<option value="2"> < </option>-->
+                                                <!--<option value="3"> = </option>-->
+                                                <!--<option value="4"> >= </option>-->
+                                                <!--<option value="5"> <= </option>-->
+                                                <!--<option value="6">模糊查询</option>-->
+                                                <!--<option value="7">空值查询</option>-->
+                                            </select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="layui-col-md3">
+                                <form  class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">字段参数/值</label>
+                                        <div class="layui-input-block qOther">
+                                            <input id="qField" type="text" list="fieldOption" class="layui-input" autocomplete="off">
+                                            <div style="overflow-y:scroll;" height="50px">
+                                                <datalist id="fieldOption"  style="display:none;">
+                                                </datalist>
+                                            </div>
+                                        </div>
+                                        <div class="layui-input-block qTime">
+                                            <input type="text" class="layui-input" id="qTimeSelect" placeholder="">
+                                        </div>
+                                        <div class="layui-input-block qTime2">
+                                            <input type="text" class="layui-input" id="qTimeSelect2" placeholder="">
+                                        </div>
+                                        <div class="layui-input-block qTime3">
+                                            <input type="text" class="layui-input" id="qTimeSelect3" placeholder="">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="layui-col-md3 queryAdd">
+                                <button id="queryAdd" type="button" class="layui-btn layui-btn-primary layui-btn-sm btn-add">新  增</button>
+                            </div>
+                        </div>
+                        <div class="layui-row" style="padding-left: 20px">
+                            <div class="layui-col-md6">
+                                <form  class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label" style="width: 85px;">条件关系关联</label>
+                                        <div class="layui-input-block">
+                                            <input type="radio" name="related" lay-filter="relation" value="AND" title="AND" checked>
+                                            <input type="radio" name="related" lay-filter="relation" value="OR" title="OR">
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md12">
+                                <p class="nothing no-2"><i class="layui-icon layui-icon-about"></i>暂无数据</p>
+                                <div class="queryTableBox">
+                                    <table id="queryTable" class="layui-table" lay-filter="queryTable" style="height: 200px">
+                                        <thead>
+                                        <tr>
+                                            <th lay-data="{field:'column'}">字段</th>
+                                            <th lay-data="{field:'conditionType'}">查询条件</th>
+                                            <th lay-data="{field:'value'}">字段参数/值</th>
+                                            <th lay-data="{toolbar: '#queryBar'}">操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="queryTableList"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-col-md12 text-center">
+                                <button id="query" class="layui-btn layui-btn-sm btns">查询</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <span class="step">第三步：查询结果</span>
+<!--                        <button id="export" type="button" class="layui-btn layui-btn-sm">导出</button>-->
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md12">
+                                <p class="nothing no-3"><i class="layui-icon layui-icon-about"></i>暂无数据</p>
+                                <div class="exportTableBox">
+                                    <table class="layui-table" id="exportTable" lay-filter="exportTable">
+                                        <thead class="exportHeader">
+                                        <tr class="exportTableHeader"></tr>
+                                        </thead>
+                                        <tbody id="exportTableList" class="exportTableList"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-col-md12 text-center">
+                                <button id="export" type="button" class="layui-btn layui-btn-sm btns">导出</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <span class="step">第四步：设置计算方式</span>
+<!--                        <button id="compute" type="button" class="layui-btn layui-btn-sm">开始计算</button>-->
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md3">
+                                <form  class="layui-form">
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">汇总字段</label>
+                                        <div class="layui-input-block">
+                                            <select id="cDataNameList" name="cDataNameList" lay-filter="cDataNameList"></select>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                            <div class="layui-col-md9">
+                                <div class="layui-row">
+                                    <div class="layui-col-md4">
+                                        <form  class="layui-form">
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label">计算方式</label>
+                                                <div class="layui-input-block">
+                                                    <select id="cType" name="cType" lay-filter="cType">
+                                                        <option value=''></option>
+                                                        <option value="COUNT">计数</option>
+                                                        <option value="SUM">求和</option>
+                                                        <option value="AVG">平均</option>
+                                                        <option value="MAX">最大值</option>
+                                                        <option value="MIN">最小值</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <div class="layui-col-md4">
+                                        <form  class="layui-form">
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label">计算字段</label>
+                                                <div class="layui-input-block">
+                                                    <select id="cDataName" name="cDataName" lay-filter="cDataName"></select>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!--<div class="layui-col-md4">-->
+                                            <!--<div class="layui-form-item">-->
+                                                <!--<label class="layui-form-label" style="width: 100px;">是否展示在图表</label>-->
+                                                <!--<div class="layui-input-block">-->
+                                                    <!--<input class="cChart" type="radio" name="cChart" lay-filter="cChart" value="1" title="是" checked>-->
+                                                    <!--<input class="cChart" type="radio" name="cChart" lay-filter="cChart" value="2" title="否">-->
+                                                <!--</div>-->
+                                            <!--</div>-->
+                                    <!--</div>-->
+                                    <div class="layui-col-md4 cAddDiv">
+                                        <button id="cAdd" type="button" class="layui-btn layui-btn-primary layui-btn-sm cAdd btn-add">新  增</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row">
+                            <div class="layui-col-md12">
+                                <p class="nothing no-4"><i class="layui-icon layui-icon-about"></i>暂无数据</p>
+                                <div class="cTableBox">
+                                    <table id="cTable" class="layui-table" lay-filter="cTable">
+                                        <thead>
+                                        <tr>
+                                            <th lay-data="{field:'groupBy'}">汇总字段</th>
+                                            <th lay-data="{field:'cType'}">计算方式</th>
+                                            <th lay-data="{field:'cDataName'}">计算字段</th>
+                                            <!--<th lay-data="{field:'cChart'}">是否展示在图表</th>-->
+                                            <th lay-data="{toolbar: '#computeBar'}">操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="cTableList"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-col-md12 text-center">
+                                <button id="compute" type="button" class="layui-btn layui-btn-sm btns">开始计算</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-row layui-col-space15">
+            <div class="layui-col-md12">
+                <div class="layui-card">
+                    <div class="layui-card-header">
+                        <span class="step">第五步：结果图表</span>
+<!--                        <button id="save" type="button" class="layui-btn layui-btn-sm">保存图表</button>-->
+                    </div>
+                    <div class="layui-card-body">
+                        <div class="layui-row">
+                            <div class="layui-col-md12">
+                                <form class="layui-form" lay-filter="sForm">
+                                    <div class="layui-row">
+                                        <div class="layui-col-md4">
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label">图表名称</label>
+                                                <div class="layui-input-block">
+                                                    <input id="sTableName" type="text" class="layui-input" lay-filter="sTableName" autocomplete="off">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-md4">
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label">X-轴</label>
+                                                <div class="layui-input-block">
+<!--                                                    <input id="sXName" type="text" class="layui-input" lay-filter="sXName" disabled>-->
+                                                    <select id="sXName" name="sXName" lay-filter="sXName">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="layui-col-md4">
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label">Y-轴</label>
+                                                <div class="layui-input-block">
+                                                    <select id="sYName" name="sYName" lay-filter="sYName">
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <p class="nothing no-5"><i class="layui-icon layui-icon-about"></i>暂无数据</p>
+                                    <div class="layui-row sChartRow">
+                                        <div class="layui-col-md12">
+                                            <div id="sChart" style="width: 600px;height:400px;margin: auto"></div>
+                                        </div>
+                                        <div class="layui-col-md12">
+                                            <form>
+                                                <div class="layui-form-item text-center">
+                                                    <div class="layui-input-block" style="margin-left: 0">
+                                                        <input type="radio" name="sChart" lay-filter="sType" value="bar" title="柱状图" checked>
+                                                        <input type="radio" name="sChart" lay-filter="sType" value="pie" title="饼状图">
+                                                        <input type="radio" name="sChart" lay-filter="sType" value="line" title="折线图">
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="layui-row layui-col-space15">
+                            <div class="layui-col-md12 text-center">
+                                <button id="save" type="button" class="layui-btn layui-btn-sm btns">保存图表</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="margin: 15px 0">
+            <p class="text-center">
+                <button class="layui-btn layui-btn-sm data-btns" id="tabSave">保存</button>
+                <button class="layui-btn layui-btn-sm data-btns layui-btn-primary" id="tabAdd">重新分析</button>
+            </p>
+        </div>
+    </div>
+    <!--<div>-->
+        <!--<p class="text-center"><button class="layui-btn layui-btn-sm site-demo-active" data-type="tabAdd">新增Tab项</button></p>-->
+    <!--</div>-->
+</div>
+<div id="addCon" style="display: none;padding:10px 40px 10px 0;">
+    <form class="layui-form"  id="mSave">
+        <div class="layui-form-item">
+            <label class="layui-form-label">模型名称</label>
+            <div class="layui-input-block">
+                <input id="mName" type="text" name="ruleName" required  lay-verify="required" placeholder="请输入内容" autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">模型描述</label>
+            <div class="layui-input-block">
+                <textarea id="mDes" type="text" name="modelDesc" placeholder="请输入内容" class="layui-textarea" rows="3"></textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">检查项</label>
+            <div class="layui-input-block">
+                <select id="mFirst" name="modelType1ItemId" required  lay-verify="required" lay-filter="mFirst" class="layui-select">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">模型名</label>
+            <div class="layui-input-block">
+                <select id="mSecond" name="modelType2ItemId" required  lay-verify="required" lay-filter="mSecond">
+                    <option value=""></option>
+                </select>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/html" id="queryBar">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="computeBar">
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+@}

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ylink.aml.modular.system.mapper.RuleRunViewPayMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ylink.aml.modular.system.entity.RuleRunViewEntityPay">
+        <id column="RULE_ID" property="ruleId"/>
+        <result column="RULE_RUN_ID" property="ruleRunId"/>
+        <result column="SUBMIT_TIME" property="submitTime"/>
+        <result column="SUBMIT_TIME_RESULT" property="submitTimeResult"/>
+        <result column="TASK_PROGRAM" property="taskProgram"/>
+        <result column="RULE_PROG" property="ruleProg"/>
+        <result column="CHART_PROG" property="chartProg"/>
+        <result column="STATUS" property="status"/>
+        <result column="RUN_TIME" property="runTime"/>
+        <result column="RERULT_LINE_N" property="rerultLineN"/>
+        <result column="RERULT_PATH" property="rerultPath"/>
+        <result column="RERULT_CHART_DATA" property="rerultChartData"/>
+        <result column="APP_ID" property="appId"/>
+        <result column="RERULT_CHART" property="rerultChart"/>
+        <result column="D_INSERT" property="dInsert"/>
+        <result column="D_UPDATE" property="dUpdate"/>
+        <result column="V_INSERT_USER" property="vInsertUser"/>
+       <result column="RERULT_COUNT" property="rerultCount"/>
+        <result column="AUTO_CHECK_ID" property="autoCheckId"/>
+       <result column="RULE_COUNT" property="ruleCount"/>
+        <result column="RULE_PRIORITY" property="rulePriority"/>
+        <result column="CHECK_COUNT" property="checkCount"/>
+    </resultMap>
+
+</mapper>

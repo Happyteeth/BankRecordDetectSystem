@@ -1,0 +1,27 @@
+.dataReport-box{
+    height: 100vh;
+    background: #fff;
+}
+.layui-card{
+    height: 100%;
+}
+.rHeader{
+    height: 60px;
+    line-height: 60px;
+}
+.layui-form-item{
+    margin-top: 11px;
+}
+.btn-r{
+    margin-left: 15px;
+}
+.nothing{
+    font-size: 25px;
+    text-align: center;
+    color: #d4d4d4;
+    line-height: 100px;
+}
+div canvas{
+    background:rgba(255,255,255,1);
+    margin: 0px 24px 24px 0px;
+}

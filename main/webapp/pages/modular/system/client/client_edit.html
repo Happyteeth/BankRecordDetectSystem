@@ -1,0 +1,75 @@
+@layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/system/client/client_edit.js"]}){
+
+
+<form id="clientForm" lay-filter="clientForm" class="layui-form model-form">
+    <input name="clientId" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">微信头像</label>
+        <div class="layui-input-block" id=avatar">
+            <img src="" id="avatarUrl">${avatarUrl}
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input name="name" placeholder="请输入客户姓名" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="mobile" name="mobile" placeholder="请输入电话号码" type="text" class="layui-input"
+                   lay-verify="required" required autocomplete="off"/>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">微信昵称<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="nickName" name="nickName" placeholder="请输入微信昵称" type="text" class="layui-input" lay-verify="required" required autocomplete="off"/>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">地址<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input name="address"  placeholder="请输入地址" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+        </div>
+
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别</label>
+        <div class="layui-input-block">
+            <select name='gender' id='gender'>
+                <option value='1'>男</option>
+                <option value='2'>女</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">分配给</label>
+        <div class="layui-input-block">
+            <select name='managerId' id='managerId' lay-search>
+                <option value="0"></option>
+                @for(var i=0;i< managerList.~size;i++) {
+                <option value="${managerList[i].userId}">${managerList[i].name}</option>
+                @}
+            </select >
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">备注</label>
+        <div class="layui-input-block">
+            <textarea name="remarks" placeholder="限100字" maxlength="100" class="layui-textarea"></textarea>
+        </div>
+    </div>
+    <div class="layui-form-item text-right">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" lay-filter="btnSubmit" id="edit" lay-submit>保存</button>
+    </div>
+</form>
+@}

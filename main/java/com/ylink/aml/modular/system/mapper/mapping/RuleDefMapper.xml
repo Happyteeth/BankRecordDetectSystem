@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ylink.aml.modular.system.mapper.RuleDefMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ylink.aml.modular.system.entity.RuleDef">
+        <id column="RULE_ID" property="ruleId"/>
+        <result column="RULE_NAME" property="ruleName"/>
+        <result column="RULE_WEB" property="ruleWeb"/>
+        <result column="TASK_PROGRAM" property="taskProgram"/>
+        <result column="RULE_PROG" property="ruleProg"/>
+        <result column="CHART_TYPE" property="chartType"/>
+        <result column="CHART_PROG" property="chartProg"/>
+        <result column="RULE_TYPE" property="ruleType"/>
+        <result column="MODEL_SOURCE" property="modelSource"/>
+        <result column="MODEL_DESC" property="modelDesc"/>
+        <result column="MODEL_TYPE1_ITEM_ID" property="modelType1ItemId"/>
+        <result column="MODEL_TYPE1_ITEM_VAL_ID" property="modelType1ItemValId"/>
+        <result column="MODEL_TYPE2_ITEM_ID" property="modelType2ItemId"/>
+        <result column="MODEL_TYPE2_ITEM_VAL_ID" property="modelType2ItemValId"/>
+        <result column="C_DEL_FLAG" property="cDelFlag"/>
+        <result column="IF_AUTO_CHECK" property="ifAutoCheck"/>
+        <result column="D_INSERT" property="dInsert"/>
+        <result column="D_UPDATE" property="dUpdate"/>
+        <result column="V_INSERT_USER" property="vInsertUser"/>
+        <result column="V_UPDATE_USER" property="vUpdateUser"/>
+       <result column="CHART_VAL" property="chartVal"/>
+        <result column="CHART_X" property="chartX"/>
+        <result column="RULE_COUNT" property="ruleCount"/>
+        <result column="SHOW_ORDER" property="showOrder"/>
+    </resultMap>
+    <sql id="model_List">
+        RULE_ID,RULE_NAME,RULE_WEB,TASK_PROGRAM,RULE_PROG,CHART_TYPE,CHART_PROG,RULE_TYPE,MODEL_SOURCE,MODEL_DESC,MODEL_TYPE1_ITEM_ID,MODEL_TYPE1_ITEM_VAL_ID,
+        MODEL_TYPE2_ITEM_ID,MODEL_TYPE2_ITEM_VAL_ID,C_DEL_FLAG,D_INSERT,D_UPDATE,V_INSERT_USER,V_UPDATE_USER,IF_AUTO_CHECK,CHART_X,CHART_VAL,RULE_COUNT
+    </sql>
+    <select id="findexcellist" resultType="com.ylink.aml.modular.system.entity.RuleDef" >
+        SELECT
+        <include refid="model_List"/>
+        FROM RULE_DEF WHERE RULE_TYPE="2"
+        GROUP BY
+        RULE_ID
+    </select>
+</mapper>

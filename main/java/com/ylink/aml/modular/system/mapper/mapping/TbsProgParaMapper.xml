@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ylink.aml.modular.system.mapper.TbsProgParaMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ylink.aml.modular.system.entity.TbsProgPara">
+        <result column="V_PROG_ID" property="vProgId" />
+        <result column="V_PARA_ID" property="vParaId" />
+        <result column="V_PARA_DESC" property="vParaDesc" />
+        <result column="V_PARA_VALUE" property="vParaValue" />
+        <result column="D_INSERT" property="dInsert" />
+        <result column="D_UPDATE" property="dUpdate" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        V_PROG_ID AS vProgId, V_PARA_ID AS vParaId, V_PARA_DESC AS vParaDesc, V_PARA_VALUE AS vParaValue, D_INSERT AS dInsert, D_UPDATE AS dUpdate
+    </sql>
+
+</mapper>

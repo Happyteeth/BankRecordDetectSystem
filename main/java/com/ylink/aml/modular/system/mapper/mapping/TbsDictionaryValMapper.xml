@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ylink.aml.modular.system.mapper.TbsDictionaryValMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ylink.aml.modular.system.entity.TbsDictionaryVal">
+        <result column="V_ITEM_VAL_ID" property="vItemValId"/>
+        <result column="V_ITEM_ID" property="vItemId"/>
+        <result column="V_ITEM_ID_PAR" property="vItemIdPar"/>
+        <result column="V_ITEM_VAL_ID_PAR" property="vItemValIdPar"/>
+        <result column="V_VAL_ENAME" property="vValEname"/>
+        <result column="V_VAL_NAME" property="vValName"/>
+        <result column="N_ORDERID" property="nOrderid"/>
+        <result column="N_LOWER_LIMIT" property="nLowerLimit"/>
+        <result column="N_UPPER_LIMIT" property="nUpperLimit"/>
+        <result column="N_RATIO" property="nRatio"/>
+        <result column="C_DEL_FLAG" property="cDelFlag"/>
+        <result column="D_INSERT" property="dInsert"/>
+        <result column="D_UPDATE" property="dUpdate"/>
+        <result column="V_INSERT_USER" property="vInsertUser"/>
+        <result column="V_UPDATE_USER" property="vUpdateUser"/>
+        <result column="N_LEVEL" property="nLevel"/>
+    </resultMap>
+
+    <select id="selecttbsDictionaryVal"  resultType="com.ylink.aml.modular.system.entity.TbsDictionaryVal" >
+        SELECT * FROM TBS_DICTIONARY_VAL t WHERE t.v_item_id =#{vItemId} AND t.N_LEVEL=1 AND t.C_DEL_FLAG=0
+        UNION
+        SELECT * FROM TBS_DICTIONARY_VAL t WHERE (t.v_item_id,t.v_item_val_id) IN
+        (SELECT v_item_id_par,v_item_val_id_par FROM TBS_DICTIONARY_VAL t WHERE t.v_item_id =#{vItemId} AND t.N_LEVEL=1 AND t.C_DEL_FLAG=0  AND t.v_item_id_par IS NOT NULL AND t.v_item_val_id_par IS NOT NULL);
+    </select>
+    <select id="selectId"  resultType="com.ylink.aml.modular.system.entity.TbsDictionaryVal" >
+        SELECT * FROM TBS_DICTIONARY_VAL t WHERE t.V_ITEM_VAL_ID =#{vItemValId}
+    </select>
+
+
+    <select id="selecttbsVal"  resultType="com.ylink.aml.modular.system.entity.TbsDictionaryVal" >
+        SELECT * FROM TBS_DICTIONARY_VAL t WHERE t.V_ITEM_VAL_ID_PAR =#{vItemValIdPar} AND t.N_LEVEL=2 AND t.C_DEL_FLAG=0
+    </select>
+    <!-- <select id="selecttbsDictionary"  resultType="cn.net.cfss.ying.base.modular.system.entity.TbsDictionaryVal" >
+         select t.V_ITEM_VAL_ID,t.V_ITEM_ID,t.V_ITEM_VAL_ID_PAR,t.V_VAL_NAME from TBS_DICTIONARY_VAL  t where t.V_VAL_NAME  LIKE CONCAT(CONCAT('%', #{vValName}, '%'))
+     </select>
+
+     <select id="slectvTtemval"  resultType="cn.net.cfss.ying.base.modular.system.entity.TbsDictionaryVal" >
+         select t.V_ITEM_VAL_ID,t.V_ITEM_ID,t.V_ITEM_VAL_ID_PAR,t.V_VAL_NAME from TBS_DICTIONARY_VAL  t where t.V_ITEM_VAL_ID_PAR=#{vItemValIdPar}
+     </select>
+
+     <select id="selectByvItenId"  resultType="cn.net.cfss.ying.base.modular.system.entity.TbsDictionaryVal" >
+         select t.V_ITEM_VAL_ID,t.V_ITEM_ID,t.V_ITEM_VAL_ID_PAR,t.V_VAL_NAME from TBS_DICTIONARY_VAL  t where t.V_ITEM_ID=#{vItenId}
+     </select>-->
+
+
+    <update id="updateId">
+        update TBS_DICTIONARY_VAL set  V_ITEM_VAL_ID=#{cvalid} WHERE V_ITEM_ID=#{cid}
+    </update>
+
+    <select id="selectvval" resultType="com.ylink.aml.modular.system.model.DictValDto">
+        SELECT MAX(CAST(v_item_val_id AS SIGNED)) AS valuId FROM  TBS_DICTIONARY_VAL where V_ITEM_ID=#{vItemId}
+    </select>
+    <!-- SELECT MAX(CAST(v_item_val_id AS SIGNED INTEGER)) AS valuId FROM  TBS_DICTIONARY_VAL
+     WHERE V_ITEM_ID=#{vItemId}-->
+    <select id="selectorde" resultType="com.ylink.aml.modular.system.model.OrdDto">
+        SELECT MAX(CAST(N_ORDERID AS SIGNED))+1 AS orde FROM  TBS_DICTIONARY_VAL
+    </select>
+    <!-- SELECT MAX(CAST(N_ORDERID AS SIGNED INTEGER)) AS orde FROM  TBS_DICTIONARY_VAL t-->
+</mapper>

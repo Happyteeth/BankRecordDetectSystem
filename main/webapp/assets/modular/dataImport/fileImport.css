@@ -1,0 +1,15 @@
+div th{
+    background: rgba(250,250,250,1);
+}
+.layui-input,.layui-form-item{
+    height: 32px;
+    line-height: 32px;
+}
+.file-box{
+    padding: 24px 15px;
+}
+.file-btns{
+    width: 65px;
+    line-height: 32px;
+    height: 32px;
+}

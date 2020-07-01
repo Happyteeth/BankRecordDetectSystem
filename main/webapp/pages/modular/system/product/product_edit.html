@@ -1,0 +1,127 @@
+@layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/system/product/product_edit.js"]}){
+
+<script type="text/javascript" src="${ctxPath}/assets/common/plugins/jquery/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/wangeditor/wangEditor.min.js"></script>
+<form id="productForm" lay-filter="productForm" class="layui-form model-form">
+    <input name="productId" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">产品名称<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input name="title" placeholder="请输入产品名称" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">产品简介<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input id="introduce" name="introduce" placeholder="请输入产品简介" type="text" class="layui-input"
+                   lay-verify="required" required autocomplete="off"/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">产品内容<span style="color: red;">*</span></label>
+        <input id="content" name="content" type="hidden">
+        <div style="height:450px;" id="editor" class="layui-input-block">
+        </div>
+
+        </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">是否上线<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <select name='status' id='status'>
+                <option value='1'>是</option>
+                <option value='2'>否</option>
+            </select>
+        </div>
+    </div>
+    <div class="layui-form-item text-right">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" lay-filter="btnSubmit" id="edit" lay-submit>保存</button>
+    </div>
+</form>
+@}
+<script type="text/javascript">
+    var E = window.wangEditor;
+    var editor = new E('#editor');
+
+
+
+
+    layui.use(['layer', 'form', 'admin', 'ax'], function () {
+        var $ = layui.jquery;
+        var $ax = layui.ax;
+        var form = layui.form;
+        var admin = layui.admin;
+        var layer = layui.layer;
+
+        // 让当前iframe弹层高度适应
+        admin.iframeAuto();
+
+        //获取产品信息
+        var ajax = new $ax(Feng.ctxPath + "/product/detail/" + Feng.getUrlParam("productId"));
+        var result = ajax.start();
+        form.val('productForm', result);
+        prepare();
+
+        // 表单提交事件
+        form.on('submit(btnSubmit)', function (data) {
+            var ajax = new $ax(Feng.ctxPath + "/product/update", function (data) {
+                Feng.success("修改成功！");
+
+                //传给上个页面，刷新table用
+                admin.putTempData('formOk', true);
+
+                //关掉对话框
+                admin.closeThisDialog();
+            }, function (data) {
+                Feng.error("修改失败！" + data.responseJSON.message)
+            });
+            ajax.set(data.field);
+            ajax.start();
+        });
+    });
+
+    function unescapeHTML(a) {
+        a = "" + a;
+        return a.replace(/&lt;/g, "<").replace(/&gt;/g, ">").replace(/&amp;/g, "&").replace(/&quot;/g, '"').replace(/&apos;/g, "'");
+    }
+
+    function prepare() {
+        //第一步是先获取服务器传过来的图文信息值
+
+        var content = document.getElementById("content").value;
+        //alert("content:" + content)
+        var content1 = unescapeHTML(content)
+        //var content = $('#content').val();
+        //alert("content1:" + content1)
+        //通过64base格式保存图片
+        //editor.customConfig.uploadImgShowBase64 = true
+        // 隐藏“网络图片”tab
+        editor.customConfig.showLinkImg = false
+        // 配置服务器端地址
+        editor.customConfig.uploadImgServer = '/upload/images'
+        //上传图片的大小限制
+        editor.customConfig.uploadImgMaxSize = 3 * 1024 * 1024
+        //上传图片超时设置
+        editor.customConfig.uploadImgTimeout  = 5000
+        //定义上传图片的名字
+        editor.customConfig.uploadFileName = 'upfile'
+        //开启debug模式
+        //editor.customConfig.debug=true;
+        editor.create();
+        editor.txt.html(content1)
+    }
+
+
+    //这里的edit是表单提交的按钮
+    document.getElementById('edit').addEventListener('click', function () {
+        // 读取 html
+        var info = editor.txt.html();
+        //alert(info)
+
+
+        document.getElementById("content").value = info;
+
+    }, false);
+
+</script>

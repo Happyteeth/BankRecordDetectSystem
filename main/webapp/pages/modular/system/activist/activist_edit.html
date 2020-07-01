@@ -1,0 +1,73 @@
+@layout("/common/_container.html",{bg:"bg-white",js:["/assets/modular/system/activist/activist_edit.js"]}){
+
+
+<form id="activistForm" lay-filter="activistForm" class="layui-form model-form">
+    <input name="activistId" type="hidden"/>
+    <div class="layui-form-item">
+        <label class="layui-form-label">姓名<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input name="name" placeholder="请输入客户姓名" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">电话号码<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <input name="phone" placeholder="请输入电话号码" type="text" class="layui-input" lay-verify="required" required/>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">性别<span style="color: red;">*</span></label>
+        <div class="layui-input-block" >
+            <select name='gender' id='gender'  lay-verify="required" required>
+                <option value='1'>男</option>
+                <option value='2'>女</option>
+            </select >
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">联系状态<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <select name='contactStatus' id='contactStatus'  lay-verify="required" required>
+                <option value="0">未联系</option>
+                <option value='1'>已联系</option>
+                <option value='2'>拒接</option>
+            </select >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">核心客户<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <select name='coreCustomer' id='coreCustomer'  lay-verify="required" required>
+                <option value='1'>否</option>
+                <option value="0">是</option>
+            </select >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">客户意愿<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <select name='customerWishes' id='customerWishes'  lay-verify="required" required>
+                <option value='2'>待定</option>
+                <option value="0">感兴趣</option>
+                <option value="1">不感兴趣</option>
+            </select >
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <label class="layui-form-label">再次跟进<span style="color: red;">*</span></label>
+        <div class="layui-input-block">
+            <select name='followUpAgain' id='followUpAgain'  lay-verify="required" required>
+                <option value='1'>否</option>
+                <option value="0">是</option>
+            </select >
+        </div>
+    </div>
+
+    <div class="layui-form-item text-right">
+        <button class="layui-btn layui-btn-primary" type="button" ew-event="closeDialog">取消</button>
+        <button class="layui-btn" lay-filter="btnSubmit" id="edit" lay-submit>保存</button>
+    </div>
+</form>
+@}

@@ -1,0 +1,82 @@
+@layout("/common/_container.html",{plugins:["ztree"],js:["/assets/modular/system/activist/activist.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">活动客户管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <div class="layui-inline">
+                                <input id="name" class="layui-input" type="text" placeholder="客户名字或电话号码"/>
+                            </div>
+                            <div class="layui-inline">
+                                <select id="contactStatus">
+                                    <option value="">联系状态</option>
+                                    <option value="0">未联系</option>
+                                    <option value="1">已联系</option>
+                                    <option value="2">联系失败</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <select id="coreCustomer">
+                                    <option value="">核心客户</option>
+                                    <option value="0">是</option>
+                                    <option value="1">否</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <select id="customerWishes">
+                                    <option value="">客户意愿</option>
+                                    <option value="0">感兴趣</option>
+                                    <option value="1">不感兴趣</option>
+                                    <option value="2">待定</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <select id="followUpAgain">
+                                    <option value="">再次跟进</option>
+                                    <option value="0">是</option>
+                                    <option value="1">否</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                    <select id="activityId" lay-search>
+                                        <option value="">活动名称</option>
+                                        @for(var i=0;i < activityList.~size;i++){
+                                        <option value="${activityList[i].activityId}">${activityList[i].title}</option>
+                                        @}
+                                    </select >
+                            </div>
+                            <div class="layui-inline">
+                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                @if(shiro.hasPermission("/activist/add")){
+                                <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
+                                @}
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="activistTable" lay-filter="activistTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    @if(shiro.hasPermission("/activist/update")){
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    @}
+    @if(shiro.hasPermission("/activist/delete")){
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+    @}
+    @if(shiro.hasPermission("/communication/list")){
+    <a class="layui-btn  layui-btn-xs" lay-event="communication" >沟通纪要</a>
+    @}
+</script>
+@}

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ylink.aml.modular.system.mapper.TargetTabColMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.ylink.aml.modular.system.entity.TargetTabCol">
+        <id column="TABLE_NAME" property="tableName" />
+        <result column="COLUMN_NAME" property="columnName" />
+        <result column="COLUMN_SEQ" property="columnSeq" />
+        <result column="DATA_TYPE" property="dataType" />
+        <result column="DATA_LENGTH" property="dataLength" />
+        <result column="DATA_PRECISION" property="dataPrecision" />
+        <result column="DATA_SCALE" property="dataScale" />
+        <result column="DATE_FORMAT" property="dateFormat" />
+        <result column="V_ITEM_ID" property="vItemId" />
+        <result column="D_INSERT" property="dInsert" />
+        <result column="D_UPDATE" property="dUpdate" />
+        <result column="V_INSERT_USER" property="vInsertUser" />
+    </resultMap>
+
+    <resultMap id="countField" type="java.util.HashMap">
+        <result column="TABLE_NAME"  property="tableName"  javaType="String"/>
+        <result column="FIELD_NUM" property="fieldNum" javaType="int"/>
+    </resultMap>
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        TABLE_NAME AS tableName, COLUMN_NAME AS columnName, COLUMN_SEQ AS columnSeq, DATA_TYPE AS dataType, DATA_LENGTH AS dataLength, DATA_PRECISION AS dataPrecision, DATA_SCALE AS dataScale, DATE_FORMAT AS dateFormat, V_ITEM_ID AS vItemId, D_INSERT AS dInsert, D_UPDATE AS dUpdate, V_INSERT_USER AS vInsertUser
+    </sql>
+
+    <select id="selectColumnName" resultType="String">
+        select COLUMN_NAME from  TARGET_TAB_COL where TABLE_NAME =#{tableName} order by COLUMN_SEQ asc ;
+    </select>
+
+    <select id="countFieldNum" resultMap="countField">
+        SELECT TABLE_NAME ,COUNT(*) as FIELD_NUM FROM TARGET_TAB_COL GROUP BY TABLE_NAME
+    </select>
+</mapper>

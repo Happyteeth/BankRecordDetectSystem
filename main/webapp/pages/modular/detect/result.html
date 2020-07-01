@@ -1,0 +1,68 @@
+@layout("/common/_container.html",{css:["/assets/modular/detect/result.css","/assets/modular/detect/autoCheck.css"],js:["/assets/modular/detect/result.js"]}){
+<div class="layui-tab layui-tab-brief layui-box" lay-filter="checkBox">
+    <ul class="layui-tab-title tab-header">
+        <li class="layui-this">检测结果</li>
+        <li id="checkTab" style="display: none">检测报告<i class="layui-icon layui-icon-close-fill" onclick="closeDialog(event)"></i>
+        </li>
+    </ul>
+    <div class="layui-tab-content tab-content layui-box-con">
+        <div class="layui-tab-item layui-show">
+<div class="layui-fluid" style="height: 96vh">
+    <div class="layui-row">
+        <div class="layui-col-md12">
+            <div class="layui-card">
+                <div id="detectCon">
+                    <div class="layui-card">
+                        <div class="layui-card-header">
+                            <div class="layui-row">
+                                <div class="layui-col-md8">
+                                    <div class="proTit">
+                                        <img class="proImg" src="../../../assets/common/images/Bitmap.png" alt="">
+                                        <div class="proPrs">
+                                            <p class="prot">扫描进度 <span class="proNum"></span></p>
+                                            <div class="layui-progress" lay-filter="demo">
+                                                <div class="layui-progress-bar" lay-percent="0%"></div>
+                                            </div>
+                                            <div class="prob">正在检测中，请耐心等待<span class="dot-ani"></span></div>
+
+                                            <input name="autoCheckId" id="autoCheckId" placeholder="id" type="text" class="layui-input" value="${autoCheckId}">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="layui-col-md3 layui-col-md-offset1 proBtns">
+                                    <button id="calcBtn" class="layui-btn"
+                                            style="width:140px; height:40px; background:rgba(43,139,255,1);">取消检测
+                                    </button>
+                                    <button id="reBtn" class="layui-btn"
+                                            style="height: 35px;background:rgba(12,121,253,1);margin-right: 24px;">重新检测
+                                    </button>
+                                    <!--<a href="${ctxPath}/detect/report">-->
+                                        <button id="checkBtn" class="layui-btn site-demo-active" data-type="tabChange"
+                                                style="height: 35px;background:rgba(12,121,253,1);">查看报告
+                                        </button>
+                                    <!--</a>-->
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-card-body det-body">
+                            <div class="detCon">
+                                <div id="autoCheckModal">
+                                    <ul class="check-list"></ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+        <div class="layui-tab-item">
+            <iframe id="checkframe" src="/detect/report" style="width: 100%;height:91vh;border:none"></iframe>
+        </div>
+    </div>
+</div>
+@}

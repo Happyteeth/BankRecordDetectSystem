@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>登录</title>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="${ctxPath}/assets/common/layui/css/layui.css"/>
+    <link rel="stylesheet" href="${ctxPath}/assets/common/css/login.css" media="all">
+    <script>
+        if (window != top)
+            top.location.replace(location.href);
+    </script>
+</head>
+
+<body>
+<canvas id="Mycanvas">
+</canvas>
+
+<div class="content">
+    <div class="layui-row ">
+        <div class="login-img layui-col-md6 layui-col-sm6">
+        </div>
+        <div class="login-box layui-col-md6 layui-col-sm6 layui-col-xs12">
+            <div class="header-tit">
+                <img src="${ctxPath}/assets/common/images/logo.png" style="width:56px; height:48px;">
+                <p class="text">银行交易记录检测平台</p>
+            </div>
+            <form class="layui-form" action="${ctxPath}/login" method="post">
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-username" for="LAY-user-login-username"></label>
+                    <input type="text" name="username" id="LAY-user-login-username" lay-verify="required" placeholder="用户名" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <label class="layadmin-user-login-icon layui-icon layui-icon-password" for="LAY-user-login-password"></label>
+                    <input type="password" name="password" id="LAY-user-login-password" lay-verify="required" placeholder="密码" class="layui-input">
+                </div>
+                <div class="layui-form-item">
+                    <button lay-filter="login-submit" class="layui-btn layui-btn-fluid">登  录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="login-footer">
+    <p>© 2020 XXX有限公司</p>
+</div>
+
+@/* 加入contextPath属性和session超时的配置 */
+<script type="text/javascript">
+    var Feng = {
+        ctxPath: "",
+        addCtx: function (ctx) {
+            if (this.ctxPath === "") {
+                this.ctxPath = ctx;
+            }
+        }
+    };
+    Feng.addCtx("${ctxPath}");
+</script>
+<script type="text/javascript" src="${ctxPath}/assets/common/layui/layui.js"></script>
+<script type="text/javascript" src="${ctxPath}/assets/common/js/common.js"></script>
+
+<script>
+    layui.use(['layer', 'form'], function () {
+        var $ = layui.jquery;
+        var layer = layui.layer;
+        var form = layui.form;
+
+        var login = {}
+        // 表单提交
+        form.on('submit(login-submit)', function (obj) {
+            return true;
+        });
+
+        // 图形验证码
+        // $('.login-captcha').click(function () {
+        //     this.src = this.src + '?t=' + (new Date).getTime();
+        // });
+
+        var errorMsg = "${tips!}";
+        if (errorMsg) {
+            layer.msg(errorMsg, {icon: 5, anim: 6});
+        }
+
+
+
+        //定义画布宽高和生成点的个数
+        var WIDTH = window.innerWidth, HEIGHT = window.innerHeight, POINT = 35;
+
+        var canvas = document.getElementById('Mycanvas');
+        canvas.width = WIDTH,
+            canvas.height = HEIGHT;
+        var context = canvas.getContext('2d');
+        context.strokeStyle = 'rgba(0,0,0,0.2)',
+            context.strokeWidth = 1,
+            context.fillStyle = 'rgba(0,0,0,0.1)';
+        var circleArr = [];
+
+        //线条：开始xy坐标，结束xy坐标，线条透明度
+        function Line (x, y, _x, _y, o) {
+            this.beginX = x,
+                this.beginY = y,
+                this.closeX = _x,
+                this.closeY = _y,
+                this.o = o;
+        }
+        //点：圆心xy坐标，半径，每帧移动xy的距离
+        function Circle (x, y, r, moveX, moveY) {
+            this.x = x,
+                this.y = y,
+                this.r = r,
+                this.moveX = moveX,
+                this.moveY = moveY;
+        }
+        //生成max和min之间的随机数
+        function num (max, _min) {
+            var min = arguments[1] || 0;
+            return Math.floor(Math.random()*(max-min+1)+min);
+        }
+        // 绘制原点
+        function drawCricle (cxt, x, y, r, moveX, moveY) {
+            var circle = new Circle(x, y, r, moveX, moveY)
+            cxt.beginPath()
+            cxt.arc(circle.x, circle.y, circle.r, 0, 2*Math.PI)
+            cxt.closePath()
+            cxt.fill();
+            return circle;
+        }
+        //绘制线条
+        function drawLine (cxt, x, y, _x, _y, o) {
+            var line = new Line(x, y, _x, _y, o)
+            cxt.beginPath()
+            cxt.strokeStyle = 'rgba(0,0,0,'+ o +')'
+            cxt.moveTo(line.beginX, line.beginY)
+            cxt.lineTo(line.closeX, line.closeY)
+            cxt.closePath()
+            cxt.stroke();
+
+        }
+        //每帧绘制
+        function draw () {
+            context.clearRect(0,0,canvas.width, canvas.height);
+            for (var i = 0; i < POINT; i++) {
+                drawCricle(context, circleArr[i].x, circleArr[i].y, circleArr[i].r);
+            }
+            for (var i = 0; i < POINT; i++) {
+                for (var j = 0; j < POINT; j++) {
+                    if (i + j < POINT) {
+                        var A = Math.abs(circleArr[i+j].x - circleArr[i].x),
+                            B = Math.abs(circleArr[i+j].y - circleArr[i].y);
+                        var lineLength = Math.sqrt(A*A + B*B);
+                        var C = 1/lineLength*7-0.009;
+                        var lineOpacity = C > 0.03 ? 0.03 : C;
+                        if (lineOpacity > 0) {
+                            drawLine(context, circleArr[i].x, circleArr[i].y, circleArr[i+j].x, circleArr[i+j].y, lineOpacity);
+                        }
+                    }
+                }
+            }
+        }
+        //初始化生成原点
+        function init () {
+            circleArr = [];
+            for (var i = 0; i < POINT; i++) {
+                circleArr.push(drawCricle(context, num(WIDTH), num(HEIGHT), num(15, 2), num(10, -10)/40, num(10, -10)/40));
+            }
+            draw();
+        }
+        //调用执行
+        $(document).ready(function () {
+            init();
+            setInterval(function () {
+                for (var i = 0; i < POINT; i++) {
+                    var cir = circleArr[i];
+                    cir.x += cir.moveX;
+                    cir.y += cir.moveY;
+                    if (cir.x > WIDTH) cir.x = 0;
+                    else if (cir.x < 0) cir.x = WIDTH;
+                    if (cir.y > HEIGHT) cir.y = 0;
+                    else if (cir.y < 0) cir.y = HEIGHT;
+                }
+                draw();
+            }, 10);
+        })
+
+    });
+</script>
+
+
+</body>
+</html>

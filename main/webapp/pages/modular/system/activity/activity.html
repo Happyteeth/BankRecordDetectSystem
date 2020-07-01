@@ -1,0 +1,55 @@
+@layout("/common/_container.html",{plugins:["ztree"],js:["/assets/modular/system/activity/activity.js"]}){
+
+<div class="layui-body-header">
+    <span class="layui-body-header-title">活动管理</span>
+</div>
+
+<div class="layui-fluid">
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-lg12">
+            <div class="layui-card">
+                <div class="layui-card-body">
+                    <div class="layui-form toolbar">
+                        <div class="layui-form-item">
+                            <!--<div class="layui-inline">
+                                <input id="startTime" class="layui-input" type="text" placeholder="开始时间"/>
+                            </div>
+                            <div class="layui-inline">
+                                <input id="endTime" class="layui-input" type="text" placeholder="结束时间"/>
+                            </div>-->
+                            <div class="layui-inline">
+                                <input id="name" class="layui-input" type="text" placeholder="活动名称"/>
+                            </div>
+                            <div class="layui-inline">
+                                <select id="expire">
+                                    <option value="">活动是否结束</option>
+                                    <option value="notExpired">未结束</option>
+                                    <option value="expired">已结束</option>
+                                    <option value="all">全部</option>
+                                </select>
+                            </div>
+                            <div class="layui-inline">
+                                <button id="btnSearch" class="layui-btn icon-btn"><i class="layui-icon">&#xe615;</i>搜索</button>
+                                @if(shiro.hasPermission("/activity/add")){
+                                <button id="btnAdd" class="layui-btn icon-btn"><i class="layui-icon">&#xe654;</i>添加</button>
+                                @}
+                                <button id="btnExp" class="layui-btn icon-btn"><i class="layui-icon">&#xe67d;</i>导出</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="layui-table" id="activityTable" lay-filter="activityTable"></table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="tableBar">
+    @if(shiro.hasPermission("/activity/update")){
+    <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="edit">修改</a>
+    @}
+    @if(shiro.hasPermission("/activity/delete")){
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+    @}
+</script>
+@}

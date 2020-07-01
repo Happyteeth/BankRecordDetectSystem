@@ -1,0 +1,163 @@
+@layout("/common/_container.html",{css:["/assets/modular/model/modelManagement.css"],js:["/assets/modular/model/modelManagement.js"]}){
+
+<div class="layui-fluid" style="height: 96vh;">
+    <div class="layui-row model-box">
+        <div class="layui-col-md4">
+            <div class="layui-card model-first">
+                <div class="layui-card-header">
+                    <a id="add" href="#" class="addBtn"><i class="layui-icon layui-icon-add-circle"></i>新增检查类别</a>
+                    <div id="addCon" style="display: none;padding:10px 40px 10px 0;">
+                        <form class="layui-form" id="modelAddForm">
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">检查类别</label>
+                                <div class="layui-input-block">
+                                    <input id="addFirst" type="text" name="firstName"  placeholder="" autocomplete="off"
+                                           class=" layui-input" disabled>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">检查项</label>
+                                <div class="layui-input-block">
+                                    <input id="addSecond" name="name" required
+                                           lay-verify="required" placeholder="请输入内容"
+                                           class="addFirst layui-input "/>
+                                </div>
+                            </div>
+                            <div style="display: none">
+                                <input id="addPid" type="text" name="pid">
+                            </div>
+                            <div class="layui-form-item text-right">
+                                <button class="layui-btn layui-btn-primary" type="button" id="close">取消
+                                </button>
+                                <button class="layui-btn" lay-filter="modelAddForm" lay-submit>保存</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="addModeType2" style="display: none;padding:10px 40px 10px 0;">
+                        <form class="layui-form" id="modelAddTypeForm">
+
+                            <div class="layui-form-item">
+                                <label class="layui-form-label">检查类别</label>
+                                <div class="layui-input-block">
+                                    <input name="name" placeholder="请输入内容" required
+                                           lay-verify="required" class="addFirst layui-input "/>
+                                </div>
+                            </div>
+                            <div class="layui-form-item text-right">
+                                <button class="layui-btn layui-btn-primary" type="button" id="close2">取消
+                                </button>
+                                <button class="layui-btn" lay-filter="modelAddTypeForm" lay-submit>保存
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+                <div class="layui-card-body">
+                    <div style="display: flex">
+                        <input id="key" type="text" name="title" placeholder="搜索页面所有内容" autocomplete="off" class="layui-input">
+                        <button class="layui-btn searchBtn" id="search">
+                            <i class="layui-icon layui-icon-search sIcon"></i>
+                        </button>
+                    </div>
+                    <div id="modeTree" class="demo-tree demo-tree-box"
+                         style="height: 80vh; overflow-y: scroll;"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layui-col-md8" style="padding-left: 15px;">
+            <div class="layui-card model-first">
+                <div class="layui-card-header text-right">
+                    <button type="button" class="layui-btn layui-btn-sm" id="testListAction" style="width: 89px;height: 32px;line-height: 32px;margin-right: 24px;">
+                        批量导入
+                    </button>
+                    <button type="button" id="downLoad" class="layui-btn layui-btn-sm "
+                            lay-filter="click" style="width: 89px;height: 32px;line-height: 32px;">
+                        <i class="layui-icon"></i>批量导出
+                    </button>
+                </div>
+                <div class="layui-card-body">
+                    <form id="modelForm" lay-filter="modelForm" class="layui-form model-form">
+                        <div class="layui-form-item" style="display: flex">
+                            <div style="flex-grow: 1;">
+                                <label class="layui-form-label"><i class="edit-icon">*</i><span>模型名称</span></label>
+                                <div class="layui-input-block">
+                                    <input type="text" name="ruleId" placeholder="" autocomplete="off"
+                                           class="layui-input" style="display: none">
+                                    <input id="ruleName" type="text" name="ruleName" required lay-verify="required"
+                                           placeholder="" autocomplete="off" class="layui-input ruleName">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="layui-form-label">是否参与检测</label>
+                                <input type="radio" name="ifAutoCheck" value="0" title="不参与">
+                                <input type="radio" name="ifAutoCheck" value="1" title="参与" checked="">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">模型参数</label>
+                            <div>
+                                <table id="modeTable" lay-filter="modeTable" style="border:0"></table>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><i class="edit-icon">*</i><span>模型描述</span></label>
+                            <div class="layui-input-block">
+                                <textarea id="mDes" type="text" name="modelDesc" class="layui-textarea" rows="2"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><i class="edit-icon">*</i><span>检查类别</span></label>
+                            <div class="layui-input-block">
+                                <select id="firstList" name="vValName" lay-filter="firstList">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label"><i class="edit-icon">*</i><span>检查项</span></label>
+                            <div class="layui-input-block">
+                                <select id="secondList" name="secondList" lay-filter="secondList">
+                                    <option value=""></option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--<div class="layui-form-item">-->
+                        <!--<label class="layui-form-label">创建者</label>-->
+                        <!--<div class="layui-input-block">-->
+                        <!--<input type="text" name="vInsertUser" placeholder="" autocomplete="off"-->
+                        <!--class="layui-input" disabled>-->
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--<div class="layui-form-item">-->
+                        <!--<label class="layui-form-label">是否参与检测</label>-->
+                        <!--<input type="radio" name="ifAutoCheck" value="0" title="不参与">-->
+                        <!--<input type="radio" name="ifAutoCheck" value="1" title="参与" checked>-->
+                        <!--</div>-->
+                        <div class="layui-form-item layui-form-text">
+                            <label class="layui-form-label">模型代码</label>
+                            <div class="layui-input-block">
+                                <textarea id="modelSql" name="modelSql" placeholder="请输入内容" class="layui-textarea" rows="6" disabled></textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <button type="button" class="layui-btn layui-btn-sm model-btns" id="tabUp">执行</button>
+                                <button class="layui-btn layui-btn-sm layui-btn-primary model-btns" lay-submit lay-filter="modelForm">保存</button>
+                                <button type="reset" class="layui-btn layui-btn-sm layui-btn-primary model-btns" id="delete">删除</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-xs layui-btn-primary" lay-event="pre">保存</a>
+
+</script>
+@}
